@@ -68,7 +68,7 @@ export default {
     receiveMessage(event){
       console.log(event.data)
       console.log(event.origin)
-        if (['http://localhost:8000', ].includes(event.origin)){
+        if (['http://localhost:8000', "http://backend-sipekan.herokuapp.com"].includes(event.origin)){
           if (event.data != undefined){
             localStorage.setItem('user', event.data);
           }
