@@ -27,7 +27,7 @@
     </div>
     
     <div class="container">
-      <a href="http://backend-sipekan.herokuapp.com/login-sso/" class="btn btn-primary">
+      <a href="https://backend-sipekan.herokuapp.com/login-sso/" class="btn btn-primary">
         Login SSO
       </a>
     </div>
@@ -68,7 +68,7 @@ export default {
     receiveMessage(event){
       console.log(event.data)
       console.log(event.origin)
-        if (['http://localhost:8000', "http://backend-sipekan.herokuapp.com"].includes(event.origin)){
+        if (['http://localhost:8000', "https://pekan.herokuapp.com"].includes(event.origin)){
           if (event.data != undefined){
             localStorage.setItem('user', event.data);
           }
