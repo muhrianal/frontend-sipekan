@@ -27,7 +27,7 @@
     </div>
     
     <div class="container">
-      <a href="http://localhost:8000/login-sso/" class="btn btn-primary">
+      <a href="http://backend-sipekan.herokuapp.com/login-sso/" class="btn btn-primary">
         Login SSO
       </a>
     </div>
