@@ -103,7 +103,7 @@
                 <div class="text-center">
                     <img src="../../assets/images/icon_silang.png" alt="icon-error">
                 <h2 style="margin:20px 0px 15px 0px">Error</h2>
-                <p style="margin:0px 0px -15px 0px">Bagian berbintang harus diisi</p>
+                <p style="margin:0px 0px -15px 0px"></p>
                 </div>
             </div>
             <div class="modal-footer">
