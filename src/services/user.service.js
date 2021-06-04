@@ -187,6 +187,10 @@ class UserService {
         return axios.get(API_URL + 'pengumuman/' + id, { headers: authHeader() })
     }
 
+    getPengumuman() {
+        return axios.get(API_URL + 'pengumuman/')
+    }
+
     putPengumumanById(id, data) {
         return axios.put(API_URL + 'pengumuman/edit/' + id, data, { headers: authHeader() })
     }

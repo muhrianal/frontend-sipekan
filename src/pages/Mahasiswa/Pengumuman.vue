@@ -120,9 +120,9 @@ export default {
       kegiatan_disetujui: [[]],
     };
   },
-  mounted(){
-        // ngasih boolean flag buat nandain lagi active di halaman ini
-        this.$emit('inPengumumanPage', true);
+  mounted() {
+    // ngasih boolean flag buat nandain lagi active di halaman ini
+    this.$emit("inPengumumanPage", true);
   },
 
   created() {
