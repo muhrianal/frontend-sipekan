@@ -39,10 +39,10 @@
                                         <div class="d-flex flex-row-reverse" v-if="isAdmin">
                                             <div class="p-2">
                                                 <!-- ini id nya belom dapet -->
-                                                <a href="pengumuman/edit/{}" type="button" class="btn btn-warning" id="button-ubah">Ubah</a>                                       
+                                                <a href="pengumuman/edit/{pengumuman.id}" type="button" class="btn btn-warning" id="button-ubah">Ubah</a>                                       
                                             </div>
                                             <div class="p-2">                                               
-                                                <button type="button" class="btn btn-outline-danger" id="button-hapus">Hapus</button>                                                      
+                                                <button type="button" class="btn btn-outline-danger" @click="deletePengumuman(pengumuman.id)" id="button-hapus">Hapus</button>                                                      
                                             </div>
                                         </div>
                                     </div>
@@ -148,11 +148,13 @@ export default {
             UserService.getPengumuman().then(
                 response => {
                     var tmp2 = response.data;
+                    var id = 0;
                     for (let i = 0; i < tmp2.length; i++){
+                        id = id+1;
                         var nama = tmp2[i].nama;
                         var deskripsi = tmp2[i].deskripsi;
                         var file_pengumuman = tmp2[i].file_pengumuman;
-                        this.daftar_pengumuman.push({nama, deskripsi, file_pengumuman});
+                        this.daftar_pengumuman.push({id, nama, deskripsi, file_pengumuman});
                     }
                     this.daftar_pengumuman.shift();
 
@@ -168,10 +170,17 @@ export default {
                 return moment(date, 'YYYY-MM-DDTHH:mm').format('D MMMM YYYY');
             },
 
-            // deletePengumuman(id){
+            deletePengumuman(id){
+                var sementara = [[]];
+                for(let i=0; i< this.daftar_pengumuman.length; i++){
+                    if(this.daftar_pengumuman[i+1].id != id){
+                        sementara.push(this.daftar_pengumuman[i+1]);
+                    }
+                }
+                this.daftar_pengumuman = sementara;
+
                 
-                
-            // }
+            }
 
         },
 
