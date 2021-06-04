@@ -2,15 +2,13 @@
     <div class="root-class">
         <div class="header">
             <div class="row">
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4 ">
                     <h3 class="header-page" style="font-weight: bold;">Daftar Perizinan</h3>
                 </div>
-                <div class="col-12 col-md-4">
-                    <div class="search-wrapper panel-heading col-sm-12">
-                        <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
-                    </div>                        
-                </div>
-                <div class="col-12 col-md-4">
+                <div class="col-12 col-md-4  content-perizinan1 search-wrapper panel-heading ">
+                    <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                </div>                        
+                <div class="col-12 col-md-4 content-perizinan1">
                     <select class="form-control" v-model="choice" @change="filterPerizinan">
                         <option selected disabled value=-1>Pilih status</option>
                         <option value=-5>Semua</option>
@@ -22,7 +20,7 @@
             </div>
             <hr class="line-header line-title">
         </div>
-        <div class="content-perizinan">
+        <div class="content-perizinan1">
             <table class="table table-striped table-responsive-sm">
                 <thead>
                     <tr>
@@ -88,7 +86,7 @@ export default{
                 this.list_perizinan_filtered = this.list_perizinan
             },
             error => {
-                console.log(error.message) // untuk sementara, nanti handle ini
+                this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
             }
         )
     },
@@ -198,7 +196,7 @@ td{
     margin: 10px 0px 0px 0px;
 }
 
-.content-perizinan {
-    margin: 0px -20px 0px -20px;
+.content-perizinan1 {
+    margin: 0px 0px 0px -20px;
 }
 </style>
