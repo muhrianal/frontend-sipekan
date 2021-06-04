@@ -2,10 +2,12 @@ import axios from 'axios';
 import authHeader from './auth-header';
 
 const API_URL = 'https://backend-sipekan.herokuapp.com/';
+// const API_URL = 'http://localhost:8000/';
 
 
 class UserService {
     getAllIzinKegiatan() {
+        console.log({headers: authHeader()})
         return axios.get(API_URL + 'izin-kegiatan/', {headers: authHeader()})
     }
 
@@ -26,7 +28,7 @@ class UserService {
     }
 
     getListPerizinanFastur() {
-        return axios.get(API_URL + 'peminjaman-ruangan/verifikasi-fastur/')
+        return axios.get(API_URL + 'peminjaman-ruangan/verifikasi-fastur/',{headers:authHeader()})
     }
 
     getPeminjamanRuanganByIdIzinKegiatan(id) {
@@ -188,8 +190,8 @@ class UserService {
         return axios.put(API_URL + 'pengumuman/edit/' + id, data, { headers: authHeader() })
     }
 
-    getWaitingPKM(id, data) {
-        return axios.get(API_URL + 'izin-kegiatan-waiting/', data, {headers: authHeader()})
+    getWaitingPKM() {
+        return axios.get(API_URL + 'izin-kegiatan-waiting/', {headers: authHeader()})
     }
 
     getVerifiedPKM(id, data) {
