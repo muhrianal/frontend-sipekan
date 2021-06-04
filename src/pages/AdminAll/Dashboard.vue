@@ -21,6 +21,7 @@
               v-if="bulan1.length > 0"
               :chart-data="bulan1"
               :info="'Ditolak'"
+              :color="'#EB5757'"
             />
           </div>
           <div v-if="choices == 1">
@@ -28,6 +29,7 @@
               v-if="bulan2.length > 0"
               :chart-data="bulan2"
               :info="'Menunggu Persetujuan'"
+              :color="'#F2994A'"
             />
           </div>
           <div v-if="choices == 2">
@@ -35,56 +37,8 @@
               v-if="bulan.length > 0"
               :chart-data="bulan"
               :info="'Disetujui'"
+              :color="'#6FCF97'"
             />
-          </div>
-        </div>
-        <div class="card mb-2 p-4" style="height: 50 !important">
-          <div class="row">
-            <div class="col-8">
-              <h3>Ruangan Populer</h3>
-            </div>
-            <div class="col-4">
-              <select class="form-control" v-model="choicess" @change="filterPerizinan">
-                <option disabled value="-1">Pilih periode</option>
-                <option value="1">Hari ini</option>
-                <option value="2">7 Hari Terakhir</option>
-                <option value="3">30 Hari Terakhir</option>
-                <option value="-4">Semua</option>
-              </select>
-            </div>
-          </div>
-          <div v-if="choicess == -4">
-          <CasesLine
-            v-if="total.length > 0"
-            :label="ruangans_unique"
-            :chart-data="total"
-          ></CasesLine>
-          <h5 v-else-if="total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
-          </div>
-          
-          <div v-if="choicess == 1">
-          <CasesLine
-            v-if="harian1_total.length > 0"
-            :label="harian1_unique"
-            :chart-data="harian1_total"
-          ></CasesLine>
-          <h5 v-else-if="harian1_total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
-          </div>
-          <div v-if="choicess == 2">
-          <CasesLine
-            v-if="harian7_total.length > 0"
-            :label="harian7_unique"
-            :chart-data="harian7_total"
-          ></CasesLine>
-          </div>
-          <h5 v-else-if="harian7_total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
-          <div v-if="choicess == 3">
-          <CasesLine
-            v-if="harian30_total.length > 0"
-            :label="harian30_unique"
-            :chart-data="harian30_total"
-          ></CasesLine>
-          <h5 v-else-if="harian30_total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
           </div>
         </div>
       </div>
@@ -224,6 +178,55 @@
         </div>
       </div>
     </div>
+    <div class="card mt-2 p-4" style="height: 50 !important">
+          <div class="row">
+            <div class="col-8">
+              <h3>Ruangan Populer</h3>
+            </div>
+            <div class="col-4">
+              <select class="form-control" v-model="choicess" @change="filterPerizinan">
+                <option disabled value="-1">Pilih periode</option>
+                <option value="1">Hari ini</option>
+                <option value="2">7 Hari Terakhir</option>
+                <option value="3">30 Hari Terakhir</option>
+                <option value="-4">Semua</option>
+              </select>
+            </div>
+          </div>
+          <div v-if="choicess == -4">
+          <CasesLine
+            v-if="total.length > 0"
+            :label="ruangans_unique"
+            :chart-data="total"
+          ></CasesLine>
+          <h5 v-else-if="total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
+          </div>
+          
+          <div v-if="choicess == 1">
+          <CasesLine
+            v-if="harian1_total.length > 0"
+            :label="harian1_unique"
+            :chart-data="harian1_total"
+          ></CasesLine>
+          <h5 v-else-if="harian1_total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
+          </div>
+          <div v-if="choicess == 2">
+          <CasesLine
+            v-if="harian7_total.length > 0"
+            :label="harian7_unique"
+            :chart-data="harian7_total"
+          ></CasesLine>
+          </div>
+          <h5 v-else-if="harian7_total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
+          <div v-if="choicess == 3">
+          <CasesLine
+            v-if="harian30_total.length > 0"
+            :label="harian30_unique"
+            :chart-data="harian30_total"
+          ></CasesLine>
+          <h5 v-else-if="harian30_total.length == 0" class="text-center"> <br>Data belum tersedia. <br></h5>
+          </div>
+        </div>
   </div>
 </template>
 

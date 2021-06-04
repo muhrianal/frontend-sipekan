@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="myChart"></canvas>
+  <canvas ref="myChart" height="100"></canvas>
 </template>
 
 <script>
@@ -15,6 +15,9 @@ export default {
     chartData: {
       type: Array,
     },
+    color: {
+      type: String,
+    }
   },
   mounted() {
     new Chart(this.$refs.myChart, {
@@ -37,8 +40,8 @@ export default {
         datasets: [
           {
             label: this.info,
-            borderColor: "#F2994A",
-            backgroundColor: 'rgba(144,238,144 , 0.9 )',
+            borderColor: "white",
+            backgroundColor: this.color,
             data: this.chartData,
           },
         ],
