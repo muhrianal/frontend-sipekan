@@ -275,6 +275,8 @@ export default {
         }
     },
     mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inBuatPerizinanPage', true);
         //create daftar waktu
         let option_waktu_made = [];
         let i;

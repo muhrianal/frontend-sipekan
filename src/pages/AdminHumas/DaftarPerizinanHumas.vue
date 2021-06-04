@@ -63,6 +63,10 @@ export default{
 
         };
     },
+    mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarPerizinanPage', true);
+    },
     computed: {
         resultQuery(){
             if(this.searchQuery){

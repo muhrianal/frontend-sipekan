@@ -32,7 +32,7 @@
                         <tr v-bind:key="perizinan.id" v-if="perizinan.peminjaman_ruangan.length != 0">
                             <td class="nama-kegiatan">{{perizinan.nama_kegiatan}}</td>
                             <td>{{perizinan.organisasi}}</td>
-                            <td>{{perizinan.user.profile.role}} a.n. {{perizinan.user.profile.nama}}</td>
+                            <td>{{perizinan.user.profile.role}}</td>
                             <td><a :href="'/perizinan-fastur/' + perizinan.id">Detail</a></td>
                         </tr>
                     </template>
@@ -56,6 +56,10 @@ export default{
             list_perizinan_filtered : [],
 
         }
+    },
+    mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarPerizinanPage', true);
     },
     created(){
         UserService.getListPerizinanFastur().then(

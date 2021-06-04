@@ -301,6 +301,11 @@ export default {
 
         }
     },
+
+    mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarPerizinanPage', true);
+    },
     created(){
         this.id_izin_kegiatan = this.$route.params.id;
 

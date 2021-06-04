@@ -1,19 +1,20 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-// const API_URL = 'https://backend-sipekan.herokuapp.com/';
-const API_URL = 'http://localhost:8000/';
+const API_URL = 'https://backend-sipekan.herokuapp.com/';
+
 
 class UserService {
     getAllIzinKegiatan() {
-        return axios.get(API_URL + 'izin-kegiatan/')
+        console.log({headers: authHeader()})
+        return axios.get(API_URL + 'izin-kegiatan/', {headers: authHeader()})
     }
 
     getIzinKegiatan(id) {
-        return axios.get(API_URL + 'izin-kegiatan/' + id)
+        return axios.get(API_URL + 'izin-kegiatan/' + id , {headers: authHeader()})
     }
 
     putIzinKegiatan(id, data) {
-        return axios.put(API_URL + 'izin-kegiatan/update/' + id + '/', data)
+        return axios.put(API_URL + 'izin-kegiatan/update/' + id + '/', data , {headers: authHeader()})
     }
 
     getAllRuangan() {
@@ -21,11 +22,11 @@ class UserService {
     }
 
     postPerizinanRuanganUnitKerja(data) {
-        return axios.post(API_URL + 'peminjaman-ruangan/unit-kerja/', data)
+        return axios.post(API_URL + 'peminjaman-ruangan/unit-kerja/', data, { headers: authHeader() })
     }
 
     getListPerizinanFastur() {
-        return axios.get(API_URL + 'peminjaman-ruangan/verifikasi-fastur/')
+        return axios.get(API_URL + 'peminjaman-ruangan/verifikasi-fastur/',{headers:authHeader()})
     }
 
     getPeminjamanRuanganByIdIzinKegiatan(id) {
@@ -37,7 +38,8 @@ class UserService {
     }
 
     putUpdateStatusDanAlasanPenolakanPeminjamanRuangan(data, id) {
-        return axios.put(API_URL + 'peminjaman-ruangan/update-status/' + id + '/', data)
+        return axios.put(API_URL + 'peminjaman-ruangan/update-status/' + id + '/', data, { headers: authHeader() })
+
     }
 
     getRuangan(id) {
@@ -171,41 +173,45 @@ class UserService {
     }
 
     postPengumuman(data) {
-        return axios.post(API_URL + 'pengumuman/create', data)
+        for (var pair of data.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+    
+        return axios.post(API_URL + 'pengumuman/create', data, { headers: authHeader() })
     }
 
     getPengumumanById(id) {
-        return axios.get(API_URL + 'pengumuman/' + id)
+        return axios.get(API_URL + 'pengumuman/' + id, { headers: authHeader() })
     }
 
     putPengumumanById(id, data) {
-        return axios.put(API_URL + 'pengumuman/edit/' + id, data)
+        return axios.put(API_URL + 'pengumuman/edit/' + id, data, { headers: authHeader() })
     }
 
-    getWaitingPKM(id, data) {
-        return axios.get(API_URL + 'izin-kegiatan-waiting/', data)
+    getWaitingPKM() {
+        return axios.get(API_URL + 'izin-kegiatan-waiting/', {headers: authHeader()})
     }
 
     getVerifiedPKM(id, data) {
-        return axios.get(API_URL + 'izin-kegiatan-disetujui/', data)
+        return axios.get(API_URL + 'izin-kegiatan-disetujui/', data, {headers: authHeader()})
     }
     getRuanganDetailed() {
-        return axios.get(API_URL + 'izin-kegiatan-detailed/')
+        return axios.get(API_URL + 'izin-kegiatan-detailed/', {headers: authHeader()})
     }
     getChartDisetujui() {
-        return axios.get(API_URL + 'chart/kegiatan-disetujui/')
+        return axios.get(API_URL + 'chart/kegiatan-disetujui/', {headers: authHeader()})
     }
     getChartDitolak() {
-        return axios.get(API_URL + 'chart/kegiatan-ditolak/')
+        return axios.get(API_URL + 'chart/kegiatan-ditolak/', {headers: authHeader()})
     }
     getChartMenunggu() {
-        return axios.get(API_URL + 'chart/kegiatan-menunggu/')
+        return axios.get(API_URL + 'chart/kegiatan-menunggu/', {headers: authHeader()})
     }
     getWaitingHumas() {
-        return axios.get(API_URL + 'perizinan-humas-disetujui/')
+        return axios.get(API_URL + 'perizinan-humas-disetujui/', {headers: authHeader()})
     }
     getStokSouvenir() {
-        return axios.get(API_URL + 'stok-souvenir/')
+        return axios.get(API_URL + 'stok-souvenir/', {headers: authHeader()})
     }
 }
 export default new UserService();

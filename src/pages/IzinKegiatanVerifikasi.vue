@@ -15,13 +15,13 @@
                         <label v-if="izin_kegiatan.status_perizinan_kegiatan==3" class="status">Status Sekarang: <span class="status-span" style="color: #EB5757;">Ditolak</span></label>
                     </div>
                     <div class="col-6 col-md-6 px-4 d-flex justify-content-end">
-                        <label class="status">Dibuat: {{getDate(izin_kegiatan.detail_kegiatan.created_at)}}</label>
+                        <label v-if="izin_kegiatan.detail_kegiatan!=null" class="status">Dibuat: {{getDate(izin_kegiatan.detail_kegiatan.created_at)}}</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-6 col-md-6"></div>
                     <div class="col-6 col-md-6 px-4 d-flex justify-content-end">
-                        <label class="status">Disunting: {{getDate(izin_kegiatan.detail_kegiatan.updated_at)}}</label>
+                        <label v-if="izin_kegiatan.detail_kegiatan!=null" class="status">Disunting: {{getDate(izin_kegiatan.detail_kegiatan.updated_at)}}</label>
                     </div>
                 </div>
                 <div class="form-row">
@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>Tempat Pelaksanaan:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.tempat_pelaksanaan" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.tempat_pelaksanaan" readonly>
                     </div>
 
                 </div>
@@ -40,63 +40,63 @@
                 <div class="form-row">
                     <div class="col-12 col-md-5 px-4 py-2">
                         <label>Tanggal Mulai:</label>
-                        <input type="text" class="form-control" :placeholder="getDateDef(izin_kegiatan.detail_kegiatan.waktu_tanggal_mulai)" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="getDateDef(izin_kegiatan.detail_kegiatan.waktu_tanggal_mulai)" readonly>
                     </div>
                     <div class="pukul col-12 col-md-1 pl-2 pr-4">
                         <label></label>
-                        <input type="text" class="form-control" :placeholder="getHour(izin_kegiatan.detail_kegiatan.waktu_tanggal_mulai)" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="getHour(izin_kegiatan.detail_kegiatan.waktu_tanggal_mulai)" readonly>
                     </div>
                     <div class="col-12 col-md-5 px-4 py-2">
                         <label>Tanggal Selesai:</label>
-                        <input type="text" class="form-control" :placeholder="getDateDef(izin_kegiatan.detail_kegiatan.waktu_tanggal_akhir)" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="getDateDef(izin_kegiatan.detail_kegiatan.waktu_tanggal_akhir)" readonly>
                     </div>
                     <div class="pukul col-12 col-md-1 pl-2 pr-4">
                         <label></label>
-                        <input type="text" class="form-control" :placeholder="getHour(izin_kegiatan.detail_kegiatan.waktu_tanggal_akhir)" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="getHour(izin_kegiatan.detail_kegiatan.waktu_tanggal_akhir)" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>Organisasi Penanggungjawab:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.organisasi" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.organisasi" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>Ketua Organisasi:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.nama_ketua_organisasi" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.nama_ketua_organisasi" readonly>
                     </div>
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>NPM Ketua Organisasi:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.npm_ketua_organisasi" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.npm_ketua_organisasi" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>Nama PIC Kegiatan:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.nama_pic" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.nama_pic" readonly>
                     </div>
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>NPM PIC:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.npm_pic" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.npm_pic" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>Email PIC:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.email_pic" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.email_pic" readonly>
                     </div>
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>HP PIC:</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.hp_pic" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.hp_pic" readonly>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-12 col-md-6 px-4 py-2">
                         <label>Sumber Pendanaan</label>
-                        <input type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.sumber_pendanaan" readonly>
+                        <input v-if="izin_kegiatan.detail_kegiatan!=null" type="text" class="form-control" :placeholder="izin_kegiatan.detail_kegiatan.sumber_pendanaan" readonly>
                     </div>
-                    <div v-if="this.izin_kegiatan.detail_kegiatan.file_info_kegiatan != null" class="col-12 col-md-6 px-4 py-2">
+                    <div v-if="izin_kegiatan.detail_kegiatan!=null && this.izin_kegiatan.detail_kegiatan.file_info_kegiatan != null" class="col-12 col-md-6 px-4 py-2">
                         <label>Dokumen</label>
                         <div ><a  :href="'https://backend-sipekan.herokuapp.com/'+this.izin_kegiatan.detail_kegiatan.file_info_kegiatan" :download="this.izin_kegiatan.detail_kegiatan.file_info_kegiatan">{{this.izin_kegiatan.detail_kegiatan.file_info_kegiatan}}</a></div>
                     </div>
@@ -193,9 +193,10 @@ export default {
     name: 'IzinKegiatan',
     data() {
         return {
-            izin_kegiatan: "",
+            izin_kegiatan: [],
             error_message: "",
             success_message: "",
+            alasan_penolakan: null,
         }
     },
    
@@ -210,7 +211,9 @@ export default {
         );
     },
     mounted(){
-        console.log(this.error_message);
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarPerizinanPage', true);
+
     },
      methods: {
         getDateDef : function (date) {
@@ -227,10 +230,8 @@ export default {
             console.log("test");
             const date = moment(new Date(), "YYYY-MM-DDTHH:mm").format("YYYY-MM-DDTHH:mm")
             const data_put = {
-                izin_kegiatan: {
-                    "status_perizinan_kegiatan": 2,
-                    "detail_kegiatan": {"alasan_penolakan":'', "updated_at": String(date)}
-                },
+                "status_perizinan_kegiatan": 2,
+                "detail_kegiatan": {"alasan_penolakan":'', "updated_at": String(date)},
             };
             console.log(data_put);
             UserService.putIzinKegiatan(this.$route.params.id, data_put).then(
@@ -252,10 +253,8 @@ export default {
             console.log("test");
             const date = moment(new Date(), "YYYY-MM-DDTHH:mm").format("YYYY-MM-DDTHH:mm")
             const data_put = {
-                izin_kegiatan: { 
-                    status_perizinan_kegiatan: 3,
-                    detail_kegiatan: {alasan_penolakan : this.alasan_penolakan, updated_at: String(date)}
-                },
+                status_perizinan_kegiatan: 3,
+                detail_kegiatan: {"alasan_penolakan" : this.alasan_penolakan, "updated_at": String(date)},
             };
             console.log(data_put);
             UserService.putIzinKegiatan(this.$route.params.id, data_put).then(
