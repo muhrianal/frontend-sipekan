@@ -39,7 +39,7 @@
                                         <div class="d-flex flex-row-reverse" v-if="isAdmin">
                                             <div class="p-2">
                                                 <!-- ini id nya belom dapet -->
-                                                <a href="pengumuman/edit/{pengumuman.id}" type="button" class="btn btn-warning" id="button-ubah">Ubah</a>                                       
+                                                <a :href="'pengumuman/edit/' + pengumuman.id" type="button" class="btn btn-warning" id="button-ubah">Ubah</a>                                       
                                             </div>
                                             <div class="p-2">                                               
                                                 <button type="button" class="btn btn-outline-danger" @click="deletePengumuman(pengumuman.id)" id="button-hapus">Hapus</button>                                                      
