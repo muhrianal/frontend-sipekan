@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         receiveMessage(event){
-            if (['http://localhost:8000', "https://pekan.herokuapp.com"].includes(event.origin)){
+            if (['http://localhost:8000', "https://backend-sipekan.herokuapp.com"].includes(event.origin)){
                 if (event.data != undefined){
                     localStorage.setItem('user', event.data);
                 }

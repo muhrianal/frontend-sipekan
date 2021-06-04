@@ -10,7 +10,6 @@
             </div>
 
             <ul class="list-unstyled components">
-
                 <li v-bind:class="{active : isInHomePage}" >
                     <a class="sidebar-child" href="/pengumuman">Pengumuman</a>
                 </li>
@@ -29,7 +28,7 @@
 
 
                 <li v-if="isLoggedIn && (currentUser.role == 'ADMIN PKM' || currentUser.role == 'ADMIN FASTUR' || currentUser.role == 'ADMIN HUMAS')" v-bind:class="{active : isInHomePage}" >
-                    <a class="sidebar-child" href="/">Dashboard</a>
+                    <a class="sidebar-child" href="/dashboard">Dashboard</a>
                 </li>
 
                 <li v-if="isLoggedIn && currentUser.role == 'ADMIN FASTUR'" v-bind:class="{active : isInHomePage}" >
@@ -39,6 +38,13 @@
                 <li v-if="isLoggedIn && currentUser.role == 'ADMIN PKM'" v-bind:class="{active : isInHomePage}" >
                     <a class="sidebar-child" href="/izin-kegiatan">Daftar Perizinan</a>
                 </li>
+                <li v-if="isLoggedIn && currentUser.role == 'ADMIN HUMAS'" v-bind:class="{active : isInHomePage}" >
+                    <a class="sidebar-child" href="/perizinan-humas">Daftar Perizinan</a>
+                </li>
+
+                <li v-if="isLoggedIn && currentUser.role == 'ADMIN HUMAS'" v-bind:class="{active : isInHomePage}" >
+                    <a class="sidebar-child" href="/souvenir">Daftar Souvenir</a>
+                </li>
 
                 <li v-bind:class="{active : isInHomePage}" >
                     <a class="sidebar-child" href="/jadwal-tersedia">Jadwal Tersedia</a>
@@ -46,7 +52,19 @@
                 <li v-bind:class="{active : isInHomePage}" >
                     <a class="sidebar-child" href="/ruangan">Daftar Ruangan</a>
                 </li>
+
+                <li v-if="isLoggedIn != true" v-bind:class="{active : isInLoginPage}" >
+                    <a class="sidebar-child" href="/login">Login</a>
+                </li>
             </ul>
+                
+
+            <!-- <ul class="list-unstyled CTAs">
+                <li>
+                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
+                </li>
+                
+            </ul> -->
         </nav>
 
         <!-- Page Content  -->

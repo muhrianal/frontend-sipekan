@@ -160,8 +160,6 @@ import IzinKegiatan from '../../models/izin_kegiatan';
 import PeminjamanRuangan from '../../models/peminjaman_ruangan';
 import UserService from '../../services/user.service';
 import $ from 'jquery';
-import IzinMahasiswaService from '../../services/izinMahasiswa.service';
-
 
 export default {
     name: 'PeminjamanRuanganUnitKerja',
@@ -190,12 +188,12 @@ export default {
 
     },
     created(){
-        IzinMahasiswaService.getRuangan().then(
+        UserService.getAllRuangan().then(
             response =>{
                 this.list_ruangan = response.data
             },
             error => {
-                this.error_call_api = error.message || (error.response && error.response.data) ||  error.toString();
+                this.error_call_api = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
             }
         )
 
