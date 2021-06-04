@@ -38,7 +38,6 @@ class UserService {
     }
 
     putUpdateStatusDanAlasanPenolakanPeminjamanRuangan(data, id) {
-        console.log(authHeader())
         return axios.put(API_URL + 'peminjaman-ruangan/update-status/' + id + '/', data, { headers: authHeader() })
 
     }
@@ -174,11 +173,15 @@ class UserService {
     }
 
     postPengumuman(data) {
+        for (var pair of data.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
+    
         return axios.post(API_URL + 'pengumuman/create', data, { headers: authHeader() })
     }
 
     getPengumumanById(id) {
-        return axios.get(API_URL + 'pengumuman/' + id)
+        return axios.get(API_URL + 'pengumuman/' + id, { headers: authHeader() })
     }
 
     putPengumumanById(id, data) {
