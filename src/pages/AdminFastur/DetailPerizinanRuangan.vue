@@ -227,7 +227,7 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) ||  error.message ||  error.toString();
                     
 
                     $('#notification-failed').modal('show')

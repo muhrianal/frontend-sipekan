@@ -662,8 +662,6 @@
 </template>
 <script>
 import UserService from '../services/user.service';
-//import IzinMahasiswaService from '../services/izinMahasiswa.service';
-
 import moment from 'moment';
 import $ from 'jquery';
 

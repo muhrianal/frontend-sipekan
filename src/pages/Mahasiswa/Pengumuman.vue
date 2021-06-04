@@ -124,7 +124,6 @@ export default {
 
         created(){
                 UserService.getAllIzinKegiatan().then (
-
                 response => {
                     var tmp = response.data;
                     for (let i = 0; i < tmp.length; i++){
@@ -144,8 +143,6 @@ export default {
                         }
                     }
                     this.kegiatan_disetujui.shift();
-
-
                 },
                 error => {
                     this.error_message = (error.response && error.response.data) || error.message || error.toString();
