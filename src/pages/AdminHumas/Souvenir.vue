@@ -86,6 +86,7 @@ import UserService from '../../services/user.service';
 import $ from 'jquery';
 
 
+
 export default {
     name: 'Souvenir',
     data() {

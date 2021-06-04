@@ -20,87 +20,113 @@
 
         <div class="m-1">
             <template v-for="izin in perizinan" v-bind:key="izin.id">
-                <div class="card m-2 kotakstatus"  v-if="izin.user==currentUser.id_user">
-                    <div class="d-flex bd-highlight">
-                        <div class="p-2 flex-grow-1 bd-highlight">
-                            <div class="acara font-weight-bold">{{ izin.nama_kegiatan }}</div>
-                            <div class="organisasi" >{{ izin.organisasi }}</div>
-                        </div>
-                        <a class="p-2 pr-3 bd-highlight" style="font-size:13px" :href="'/perizinan/'+izin.id">Lihat Detail &#8594;</a>
-                    </div>
-
-                    <div class="m-2">
-                        <div class="progress m-2" style="height:8px">
-                            <template v-if="izin.status_perizinan_kegiatan!=3">
-                                <div v-if="izin.status_perizinan_kegiatan==1" class="progress-bar kuning" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                <div v-if="izin.status_perizinan_kegiatan==2" class="progress-bar hijau" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                <div class="progress-bar putih keruang" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                <div v-if="izin.peminjaman_ruangan.length==0" class="progress-bar abu" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                <template v-if="izin.peminjaman_ruangan!=0" style="width:20%">
-                                    <template v-for="pinjam in izin.peminjaman_ruangan" v-bind:key=pinjam.id>
-                                        <div v-if="pinjam.status_peminjaman_ruangan==1" class="progress-bar flex-fill kuning p-2 bd-highlight"></div>
-                                        <div v-if="pinjam.status_peminjaman_ruangan==2" class="progress-bar flex-fill hijau p-2 bd-highlight"></div>
-                                        <div v-if="pinjam.status_peminjaman_ruangan==3" class="progress-bar flex-fill merah p-2 bd-highlight"></div>
-                                    </template>
-                                </template>
-
-
-                                <div class="progress-bar putih kepub" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                
-                                <template v-if="izin.perizinan_publikasi!=null" style="width:20%">
-                                    <template v-for="pub in izin.perizinan_publikasi.jenis_publikasi" v-bind:key="pub.id">
-                                        <div v-if="pub.status_perizinan_publikasi==1" class="progress-bar flex-fill kuning p-2 bd-highlight"></div>
-                                        <div v-if="pub.status_perizinan_publikasi==2" class="progress-bar flex-fill hijau p-2 bd-highlight"></div>
-                                        <div v-if="pub.status_perizinan_publikasi==3" class="progress-bar flex-fill merah p-2 bd-highlight"></div>
-                                    </template>          
-                                </template>
-
-                                <template v-if="izin.perizinan_publikasi==null">
-                                    <div class="progress-bar abu" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                </template>
-
-                                <div class="progress-bar putih kesouv" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-
-                                <template v-if="izin.permintaan_souvenir.length!=0" style="width:20%">
-                                    <template v-for="souvenir in izin.permintaan_souvenir" v-bind:key="souvenir.id">
-                                        <div v-if="souvenir.status_permintaan_souvenir==1" class="progress-bar flex-fill kuning p-2 bd-highlight" ></div>
-                                        <div v-if="souvenir.status_permintaan_souvenir==2" class="progress-bar flex-fill hijau p-2 bd-highlight" ></div>
-                                        <div v-if="souvenir.status_permintaan_souvenir==3" class="progress-bar flex-fill merah p-2 bd-highlight" ></div>
-                                    </template>
-                                </template>
-
-                                <template v-if="izin.permintaan_souvenir.length==0">
-                                    <div class="progress-bar abu" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                </template>
-
-                                <div class="progress-bar putih kepro" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                                <template v-if="izin.permintaan_protokoler!=null" style="width:20%">
-                                    <div v-if="izin.permintaan_protokoler.status_permintaan_protokoler==1" class="progress-bar kuning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    <div v-if="izin.permintaan_protokoler.status_permintaan_protokoler==2" class="progress-bar hijau" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    <div v-if="izin.permintaan_protokoler.status_permintaan_protokoler==3" class="progress-bar merah" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                </template>
-
-                                <template v-if="izin.permintaan_protokoler==null">
-                                    <div class="progress-bar abu" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                </template>
-                            </template>
-                            <template v-if="izin.status_perizinan_kegiatan==3" >
-                                <div class="progress-bar merah" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
-                            </template>
+                <div v-if="currentUser.role=='MAHASISWA'">
+                    <div class="card m-2 kotakstatus"  v-if="izin.user==currentUser.id_user">
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 flex-grow-1 bd-highlight">
+                                <div class="acara font-weight-bold">{{ izin.nama_kegiatan }}</div>
+                                <div class="organisasi" >{{ izin.organisasi }}</div>
+                            </div>
+                            <a class="p-2 pr-3 bd-highlight" style="font-size:13px" :href="'/perizinan/'+izin.id">Lihat Detail &#8594;</a>
                         </div>
 
-                        <div class="d-flex justify-content-around mr-4 mt-2 ">
-                            <div class="pl-4 fsmall">Kegiatan</div>
-                            <div class="pl-4 fsmall">Ruangan</div>
-                            <div class="pl-4 fsmall">Publikasi</div>
-                            <div class="pl-4 fsmall">Souvenir</div>
-                            <div class="pl-4 fsmall">Protokoler</div>
+                        <div class="m-2">
+                            <div class="progress m-2" style="height:8px">
+                                <template v-if="izin.status_perizinan_kegiatan!=3">
+                                    <div v-if="izin.status_perizinan_kegiatan==1" class="progress-bar kuning" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div v-if="izin.status_perizinan_kegiatan==2" class="progress-bar hijau" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                    <div class="progress-bar putih keruang" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                    <div v-if="izin.peminjaman_ruangan.length==0" class="progress-bar abu" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                    <template v-if="izin.peminjaman_ruangan!=0" style="width:20%">
+                                        <template v-for="pinjam in izin.peminjaman_ruangan" v-bind:key=pinjam.id>
+                                            <div v-if="pinjam.status_peminjaman_ruangan==1" class="progress-bar flex-fill kuning p-2 bd-highlight"></div>
+                                            <div v-if="pinjam.status_peminjaman_ruangan==2" class="progress-bar flex-fill hijau p-2 bd-highlight"></div>
+                                            <div v-if="pinjam.status_peminjaman_ruangan==3" class="progress-bar flex-fill merah p-2 bd-highlight"></div>
+                                        </template>
+                                    </template>
+
+
+                                    <div class="progress-bar putih kepub" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    
+                                    <template v-if="izin.perizinan_publikasi!=null" style="width:20%">
+                                        <template v-for="pub in izin.perizinan_publikasi.jenis_izin_publikasi" v-bind:key="pub.id">
+                                            <div v-if="pub.status_perizinan_publikasi==1" class="progress-bar flex-fill kuning p-2 bd-highlight"></div>
+                                            <div v-if="pub.status_perizinan_publikasi==2" class="progress-bar flex-fill hijau p-2 bd-highlight"></div>
+                                            <div v-if="pub.status_perizinan_publikasi==3" class="progress-bar flex-fill merah p-2 bd-highlight"></div>
+                                        </template>          
+                                    </template>
+
+                                    <template v-if="izin.perizinan_publikasi==null">
+                                        <div class="progress-bar abu" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </template>
+
+                                    <div class="progress-bar putih kesouv" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+
+                                    <template v-if="izin.permintaan_souvenir.length!=0" style="width:20%">
+                                        <template v-for="souvenir in izin.permintaan_souvenir" v-bind:key="souvenir.id">
+                                            <div v-if="souvenir.status_permintaan_souvenir==1" class="progress-bar flex-fill kuning p-2 bd-highlight" ></div>
+                                            <div v-if="souvenir.status_permintaan_souvenir==2" class="progress-bar flex-fill hijau p-2 bd-highlight" ></div>
+                                            <div v-if="souvenir.status_permintaan_souvenir==3" class="progress-bar flex-fill merah p-2 bd-highlight" ></div>
+                                        </template>
+                                    </template>
+
+                                    <template v-if="izin.permintaan_souvenir.length==0">
+                                        <div class="progress-bar abu" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </template>
+
+                                    <div class="progress-bar putih kepro" role="progressbar" style="width:0.1%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <template v-if="izin.permintaan_protokoler!=null" style="width:20%">
+                                        <div v-if="izin.permintaan_protokoler.status_permintaan_protokoler==1" class="progress-bar kuning" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div v-if="izin.permintaan_protokoler.status_permintaan_protokoler==2" class="progress-bar hijau" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div v-if="izin.permintaan_protokoler.status_permintaan_protokoler==3" class="progress-bar merah" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </template>
+
+                                    <template v-if="izin.permintaan_protokoler==null">
+                                        <div class="progress-bar abu" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </template>
+                                </template>
+                                <template v-if="izin.status_perizinan_kegiatan==3" >
+                                    <div class="progress-bar merah" role="progressbar" style="width:20%"  aria-valuenow="15" aria-valuemin="0" aria-valuemax="100"></div>
+                                </template>
+                            </div>
+
+                            <div class="d-flex justify-content-around mr-4 mt-2 ">
+                                <div class="pl-4 fsmall">Kegiatan</div>
+                                <div class="pl-4 fsmall">Ruangan</div>
+                                <div class="pl-4 fsmall">Publikasi</div>
+                                <div class="pl-4 fsmall">Souvenir</div>
+                                <div class="pl-4 fsmall">Protokoler</div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div v-if="currentUser.role=='UNIT KERJA'">
+                    <div class="card m-2 kotakstatus"  v-if="izin.user==currentUser.id_user">
+                        <div class="d-flex bd-highlight">
+                            <div class="p-2 flex-grow-1 bd-highlight">
+                                <div class="acara font-weight-bold">{{ izin.nama_kegiatan }}</div>
+                            </div>
+                            <a class="p-2 pr-3 bd-highlight" style="font-size:13px" :href="'/perizinan/'+izin.id">Lihat Detail &#8594;</a>
+                        </div>
+                        <div class="progress m-3" style="height:8px">
+
+                        <template v-if="izin.peminjaman_ruangan!=0" style="width:20%">
+                            <template v-for="pinjam in izin.peminjaman_ruangan" v-bind:key=pinjam.id>
+                                <div v-if="pinjam.status_peminjaman_ruangan==1" class="progress-bar flex-fill kuning p-2 bd-highlight"></div>
+                                <div v-if="pinjam.status_peminjaman_ruangan==2" class="progress-bar flex-fill hijau p-2 bd-highlight"></div>
+                                <div v-if="pinjam.status_peminjaman_ruangan==3" class="progress-bar flex-fill merah p-2 bd-highlight"></div>
+                             </template>
+                        </template>
+                        </div>
+
+
+                        
+                    </div>
+                </div>
+                
             </template>
         </div>
     </div>
@@ -122,6 +148,7 @@ export default {
         UserService.getAllPerizinan().then(
             response => {
                 this.perizinan = response.data;
+                console.log(response.data[61].perizinan_publikasi.jenis_izin_publikasi)
             },
             error => {
                 this.error_message = (error.response && error.response.data) || error.message || error.toString();
@@ -131,6 +158,7 @@ export default {
     mounted(){
         console.log(this.perizinan);
         console.log(this.error_message);
+
     },
     computed: {
         isLoggedIn() {

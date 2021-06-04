@@ -1,4 +1,5 @@
 import axios from 'axios';
+import authHeader from './auth-header';
 
 const API_URL = 'https://backend-sipekan.herokuapp.com/';
 
@@ -8,7 +9,7 @@ class UserService {
     }
 
     getIzinKegiatan(id) {
-        return axios.get(API_URL + 'izin-kegiatan/' + id)
+        return axios.get(API_URL + 'izin-kegiatan/' + id ,{ headers: authHeader()});
     }
 
     putIzinKegiatan(id, data) {
@@ -40,7 +41,7 @@ class UserService {
     }
 
     getRuangan(id) {
-        return axios.get(API_URL + 'api/ruangan/' + id)
+        return axios.get(API_URL + 'api/ruangan/' + id +'/')
     }
 
     postRuangan(data) {
@@ -72,7 +73,7 @@ class UserService {
     }
 
     getSouvenir(id) {
-        return axios.get(API_URL + 'souvenir/' + id)
+        return axios.get(API_URL + 'souvenir/' + id +'/')
     }
 
     deleteSouvenir(id) {

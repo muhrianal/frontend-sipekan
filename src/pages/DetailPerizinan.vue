@@ -2,7 +2,7 @@
     <div class="card fmed"  style="min-height:600%;">
     <div class="d-flex">
         <div class="mr-auto p-3">
-            <h4 class="judul p-1 align-middle" style="font-weight: 500;">Daftar Perizinan</h4>
+            <h4 class="judul p-1 align-middle" style="font-weight: 500;">Detail Perizinan</h4>
         </div>
       <div class="p-3">
       </div>
@@ -32,7 +32,7 @@
           <td>{{ perizinan.detail_kegiatan.nama_pic }}</td>
         </tr>
         </template>
-        <tr>
+        <tr v-if="currentUser.role=='MAHASISWA'">
           <td>Status</td>
           <td v-if="perizinan.status_perizinan_kegiatan==1">Menunggu Persetujuan</td>
           <td v-if="perizinan.status_perizinan_kegiatan==2">Disetujui</td>
@@ -286,35 +286,33 @@
                     </div>
                 </div>
 
-</div>
-          </tbody>
- </table>
+            </div>
+        </tbody>
+    </table>
         </div>
         </div>
 
         <div style="margin:1% 7%;">
-        
-        <div class="table-responsive">
-        <table class="table table-sm table-bordered" style="border-radius: 10px 10px 0px 0px;">
-          <thead class="thead kuning rounded-top" style="border-radius: 10px 10px 0px 0px;">
-            <tr style="border-radius: 10px;">
-              <th scope="col" colspan="6" class="text-center" style="border-radius: 5px 5px 0px 0px;">Informasi Publikasi, Souvenir, dan Protokoler</th>
-            </tr>
-          </thead>
-        </table>
-        <div class="d-flex">
-          <div>
-            <div class="fmed font-weight-bold abu3">Publikasi </div>
+            <div class="table-responsive" v-if="currentUser.role=='MAHASISWA'">
+                <table class="table table-sm table-bordered" style="border-radius: 10px 10px 0px 0px;">
+                    <thead class="thead kuning rounded-top" style="border-radius: 10px 10px 0px 0px;">
+                        <tr style="border-radius: 10px;">
+                        <th scope="col" colspan="6" class="text-center" style="border-radius: 5px 5px 0px 0px;">Informasi Publikasi, Souvenir, dan Protokoler</th>
+                        </tr>
+                    </thead>
+                </table>
+            <div class="d-flex" v-if="currentUser.role=='MAHASISWA'">
+            <div >
+                <div class="fmed font-weight-bold abu3">Publikasi </div>
 
-          </div>
-          <template v-if="perizinan.perizinan_publikasi.jenis_izin_publikasi!=null">
-          
-          <div class="ml-auto">
-            <a data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;"  data-target="#popup-perizinan-publikasi">edit</a>
-          </div>
-          
-          </template>
+            </div>
+            
+            <div class="ml-auto">
+                <a data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;"  data-target="#popup-perizinan-publikasi">edit</a>
+            </div>
+            
         </div>
+        <div v-if="currentUser.role=='MAHASISWA'">
         <table v-if="perizinan.perizinan_publikasi==null" class="table table-sm table-bordered mt-2 fsmall" style="border-radius: 10px 10px 0px 0px;">
             <tr>
               <td class="text-center abu2">Tanggal Mulai</td>
@@ -333,6 +331,7 @@
               <td class="text-center ">-</td>
             </tr>
         </table>
+        </div>
         <table v-if="perizinan.perizinan_publikasi!=null" class="table table-sm table-bordered mt-2 fsmall" style="border-radius: 10px 10px 0px 0px;">
             <tr>
               <td class="text-center abu2">Tanggal Mulai</td>
@@ -348,7 +347,7 @@
             <td :rowspan="perizinan.perizinan_publikasi.jenis_izin_publikasi.length+1" class="align-middle text-center">{{perizinan.perizinan_publikasi.keterangan}}</td>
             </tr>
             <template  v-for="pub in perizinan.perizinan_publikasi.jenis_izin_publikasi" v-bind:key="pub.id">
-            <tr>
+            <tr >
             
             <td v-if="pub.jenis_publikasi.luar_ruangan==true"> {{pub.jenis_publikasi.deskripsi_publikasi}}</td>
             <td v-if="pub.jenis_publikasi.luar_ruangan==true"> - </td>
@@ -424,9 +423,9 @@
             
         </table>
         </div>
-        <div class="fmed font-weight-bold abu3">Souvenir </div>
-        <div class="table-responsive">
-        <table v-if="perizinan.permintaan_protokoler==null" class="table table-sm table-bordered mt-2 fsmall" style="border-radius: 10px 10px 0px 0px;">
+        <div v-if="currentUser.role=='MAHASISWA'" class="fmed font-weight-bold abu3">Souvenir </div>
+        <div v-if="currentUser.role=='MAHASISWA'" class="table-responsive">
+        <table  v-if="perizinan.permintaan_souvenir==null" class="table table-sm table-bordered mt-2 fsmall" style="border-radius: 10px 10px 0px 0px;">
             <tr>
               <td class="text-center abu2">Nama Pembicara</td>
               <td class="text-center abu2">Jabatan Pembicara</td>
@@ -444,7 +443,7 @@
               <td class="text-center ">-</td>
             </tr>
          </table>
-        <table v-if="perizinan.permintaan_protokoler!=null" class="table table-sm table-bordered mt-2 fsmall" style="border-radius: 10px 10px 0px 0px;">
+        <table v-if="perizinan.permintaan_souvenir!=null" class="table table-sm table-bordered mt-2 fsmall" style="border-radius: 10px 10px 0px 0px;">
             <tr>
               <td class="text-center abu2">Nama Pembicara</td>
               <td class="text-center abu2">Jabatan Pembicara</td>
@@ -543,8 +542,8 @@
         </table>
         </div>
 
-        <div class="fmed font-weight-bold abu3">Protokoler </div>
-        <div class="table-responsive">
+        <div v-if="currentUser.role=='MAHASISWA'" class="fmed font-weight-bold abu3">Protokoler </div>
+        <div v-if="currentUser.role=='MAHASISWA'" class="table-responsive">
         <table v-if="perizinan.permintaan_protokoler==null" class="table table-sm table-bordered mt-2 fsmall" style="border-radius: 10px 10px 0px 0px;">
             <tr>
               <td class="text-center abu2">Deskripsi Kebutuhan</td>
@@ -591,6 +590,8 @@
             </tr>
         </table>
         </div>
+
+
         <div class="fmed font-weight-bold abu3">Komentar </div>
           <template v-if="perizinan.peminjaman_ruangan.length!=null">
 
@@ -717,9 +718,10 @@ export default {
             status_perizinan_publikasi: 1,
             alasan_penolakan_publikasi: '',
             keterangan: '',            
-            jenis_publikasi: [],
+            jenis_publikasi: "",
             file_materi_kegiatan: null,
             file_flyer_pengumuman: null,
+            jenis_izin_publikasi: [],
 
             permintaan_souvenir : "",
             souvenir_data : [],
@@ -878,7 +880,7 @@ export default {
             },
 
             editPerizinanPublikasi(id, id_izin_kegiatan) {
-              if(this.jenis_publikasi.length != 0){
+              if(this.jenis_izin_publikasi.length != 0){
                     let formDataPublikasi = new FormData()
                     formDataPublikasi.append("izin_kegiatan",id_izin_kegiatan)
                     formDataPublikasi.append("tanggal_mulai", this.tanggal_mulai_publikasi)
@@ -889,7 +891,7 @@ export default {
                         list_jenis_publikasi.push(this.jenis_publikasi[i].id)
                     }
                     console.log(list_jenis_publikasi)
-                    formDataPublikasi.append("jenis_publikasi", list_jenis_publikasi)  
+                    formDataPublikasi.append("jenis_izin_publikasi", list_jenis_publikasi)  
                     if(this.file_materi_kegiatan != null){
                         formDataPublikasi.append("file_materi_kegiatan",this.file_materi_kegiatan)
                     }
@@ -1043,6 +1045,12 @@ export default {
                 return !u.luar_ruangan
             })
         },
+        isLoggedIn() {
+            return this.$store.state.auth.status.loggedIn;
+        },
+        currentUser() {
+            return this.$store.state.auth.user;
+        }
      
     },
     created(){
@@ -1089,26 +1097,32 @@ export default {
                 this.nama_kegiatan=response.data.nama_kegiatan;
                 this.organisasi=response.data.organisasi;
                 //detail_kegiatan:""
-                this.waktu_tanggal_mulai= response.data.detail_kegiatan.waktu_tanggal_mulai;
-                this.waktu_tanggal_akhir= response.data.detail_kegiatan.waktu_tanggal_akhir;
-                this.email_pic= response.data.detail_kegiatan.email_pic;
-                this.nama_pic= response.data.detail_kegiatan.nama_pic;
-                this.hp_pic= response.data.detail_kegiatan.hp_pic;
-                this.npm_pic= response.data.detail_kegiatan.npm_pic;
-                this.npm_ketua_organisasi= response.data.detail_kegiatan.npm_ketua_organisasi;
-                this.nama_ketua_organisasi= response.data.detail_kegiatan.nama_ketua_organisasi;
-                this.tempat_pelaksanaan= response.data.detail_kegiatan.tempat_pelaksanaan;
-                this.sumber_pendanaan= response.data.detail_kegiatan.sumber_pendanaan;
+                if(response.data.detail_kegiatan!=null){
+                    this.waktu_tanggal_mulai= response.data.detail_kegiatan.waktu_tanggal_mulai;
+                    this.waktu_tanggal_akhir= response.data.detail_kegiatan.waktu_tanggal_akhir;
+                    this.email_pic= response.data.detail_kegiatan.email_pic;
+                    this.nama_pic= response.data.detail_kegiatan.nama_pic;
+                    this.hp_pic= response.data.detail_kegiatan.hp_pic;
+                    this.npm_pic= response.data.detail_kegiatan.npm_pic;
+                    this.npm_ketua_organisasi= response.data.detail_kegiatan.npm_ketua_organisasi;
+                    this.nama_ketua_organisasi= response.data.detail_kegiatan.nama_ketua_organisasi;
+                    this.tempat_pelaksanaan= response.data.detail_kegiatan.tempat_pelaksanaan;
+                    this.sumber_pendanaan= response.data.detail_kegiatan.sumber_pendanaan;
+                }
+                
+                
                 //this.file_info_kegiatan= response.data.detail_kegiatan.file_info_kegiatan;
 
                 //let r;
                 this.list_peminjaman_ruangan = response.data.peminjaman_ruangan;
                 this.list_permintaan_souvenir = response.data.permintaan_souvenir;
                 //this.number_of_peminjaman = response.data.peminjaman_ruangan.length;
-                this.deskripsi_kebutuhan = response.data.perizinan_publikasi.deskripsi_kebutuhan;
+                //this.deskripsi_kebutuhan = response.data.perizinan_publikasi.deskripsi_kebutuhan;
                 this.tanggal_mulai_publikasi = response.data.perizinan_publikasi.tanggal_mulai;
                 this.tanggal_akhir_publikasi = response.data.perizinan_publikasi.tanggal_akhir;
                 this.deskripsi_kebutuhan = response.data.permintaan_protokoler.deskripsi_kebutuhan;
+                this.jenis_izin_publikasi = response.data.perizinan_publikasi.jenis_izin_publikasi;
+
                               
             },
             error => {
