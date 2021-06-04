@@ -1,7 +1,7 @@
 import axios from 'axios';
 // import authHeader from './auth-header';
 
-const API_URL = 'https://backend-sipekan.herokuapp.com/';
+const API_URL = 'http://localhost:8000/';
 
 class UserService {
     getAllIzinKegiatan() {
@@ -21,6 +21,7 @@ class UserService {
     }
     
     postPerizinanRuanganUnitKerja(data){
+        console.log(data)
         return axios.post(API_URL + 'peminjaman-ruangan/unit-kerja/', data)
     }
 

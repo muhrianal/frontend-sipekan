@@ -11,7 +11,7 @@
 
             <ul class="list-unstyled components">
 
-                <li v-if="isLoggedIn && (currentUser.role == 'MAHASISWA' || currentUser.role == 'UNIT KERJA')" v-bind:class="{active : isInHomePage}" >
+                <li v-bind:class="{active : isInHomePage}" >
                     <a class="sidebar-child" href="/pengumuman">Pengumuman</a>
                 </li>
                 
@@ -46,19 +46,7 @@
                 <li v-bind:class="{active : isInHomePage}" >
                     <a class="sidebar-child" href="/ruangan">Daftar Ruangan</a>
                 </li>
-
-                <li v-if="isLoggedIn != true" v-bind:class="{active : isInLoginPage}" >
-                    <a class="sidebar-child" href="/login">Login</a>
-                </li>
             </ul>
-                
-
-            <!-- <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                
-            </ul> -->
         </nav>
 
         <!-- Page Content  -->

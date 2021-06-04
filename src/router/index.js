@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';
 
-import Login from '../pages/Login.vue';
 import PeminjamanRuanganUnitKerja from '../pages/UnitKerja/PeminjamanRuanganUnitKerja';
 import Profile from '../pages/Profile.vue';
 import IzinKegiatan from '../pages/IzinKegiatan.vue';
@@ -42,11 +41,6 @@ const routes = [
     path:"/perizinan-fastur",
     name:"DaftarPerizinanRuangan",
     component: DaftarPerizinanRuangan,
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
   },
   {
     path: "/profile",
@@ -138,7 +132,6 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(),
   routes
-  
 });
 
 
@@ -154,16 +147,19 @@ router.beforeEach((to, from, next) =>{
     '/buat-perizinan',
     '/buat-perizinan/form-ruangan/',
     '/jadwal-tersedia',
-    "/perizinan-fastur",
+    '/perizinan-fastur',
     '/pengumuman',
 
   ];
 
   const authRequired = !publicPages.includes(to.path);
   const isLoggedIn = localStorage.getItem('user');
+  if(to.path == '/'){
+    next('/pengumuman')
+  }
 
   if (authRequired && !isLoggedIn){
-    next('/login');
+    next('/pengumuman');
   } else {
     next();
   }

@@ -17,7 +17,8 @@ export default {
     methods: {
         logOut() {
             this.$store.dispatch('auth/logout');
-            this.$router.push('/login');
+            // this.$router.push('/pengumuman');
+            location.replace('/pengumuman');
         }
     },
     computed: {
@@ -63,8 +64,6 @@ export default {
     height: 5px;
     font-weight:400;
     font-size: 16px;
-
-
 }
 
 #role-user{
