@@ -1,7 +1,9 @@
 import axios from 'axios';
 import authHeader from './auth-header';
+
 const API_URL = 'https://backend-sipekan.herokuapp.com/';
 // const API_URL = 'http://localhost:8000/';
+
 
 class UserService {
     getAllIzinKegiatan() {
@@ -22,7 +24,7 @@ class UserService {
     }
 
     postPerizinanRuanganUnitKerja(data) {
-        return axios.post(API_URL + 'peminjaman-ruangan/unit-kerja/', data)
+        return axios.post(API_URL + 'peminjaman-ruangan/unit-kerja/', data, { headers: authHeader() })
     }
 
     getListPerizinanFastur() {
@@ -38,7 +40,9 @@ class UserService {
     }
 
     putUpdateStatusDanAlasanPenolakanPeminjamanRuangan(data, id) {
-        return axios.put(API_URL + 'peminjaman-ruangan/update-status/' + id + '/', data)
+        console.log(authHeader())
+        return axios.put(API_URL + 'peminjaman-ruangan/update-status/' + id + '/', data, { headers: authHeader() })
+
     }
 
     getRuangan(id) {
@@ -172,7 +176,7 @@ class UserService {
     }
 
     postPengumuman(data) {
-        return axios.post(API_URL + 'pengumuman/create', data)
+        return axios.post(API_URL + 'pengumuman/create', data, { headers: authHeader() })
     }
 
     getPengumumanById(id) {
@@ -180,7 +184,7 @@ class UserService {
     }
 
     putPengumumanById(id, data) {
-        return axios.put(API_URL + 'pengumuman/edit/' + id, data)
+        return axios.put(API_URL + 'pengumuman/edit/' + id, data, { headers: authHeader() })
     }
 
     getWaitingPKM() {
