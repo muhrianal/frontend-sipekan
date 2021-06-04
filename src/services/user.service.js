@@ -6,15 +6,15 @@ const API_URL = 'https://backend-sipekan.herokuapp.com/';
 
 class UserService {
     getAllIzinKegiatan() {
-        return axios.get(API_URL + 'izin-kegiatan/')
+        return axios.get(API_URL + 'izin-kegiatan/', {headers: authHeader()})
     }
 
     getIzinKegiatan(id) {
-        return axios.get(API_URL + 'izin-kegiatan/' + id)
+        return axios.get(API_URL + 'izin-kegiatan/' + id , {headers: authHeader()})
     }
 
     putIzinKegiatan(id, data) {
-        return axios.put(API_URL + 'izin-kegiatan/update/' + id + '/', data)
+        return axios.put(API_URL + 'izin-kegiatan/update/' + id + '/', data , {headers: authHeader()})
     }
 
     getAllRuangan() {
@@ -186,29 +186,29 @@ class UserService {
     }
 
     getWaitingPKM(id, data) {
-        return axios.get(API_URL + 'izin-kegiatan-waiting/', data)
+        return axios.get(API_URL + 'izin-kegiatan-waiting/', data, {headers: authHeader()})
     }
 
     getVerifiedPKM(id, data) {
-        return axios.get(API_URL + 'izin-kegiatan-disetujui/', data)
+        return axios.get(API_URL + 'izin-kegiatan-disetujui/', data, {headers: authHeader()})
     }
     getRuanganDetailed() {
-        return axios.get(API_URL + 'izin-kegiatan-detailed/')
+        return axios.get(API_URL + 'izin-kegiatan-detailed/', {headers: authHeader()})
     }
     getChartDisetujui() {
-        return axios.get(API_URL + 'chart/kegiatan-disetujui/')
+        return axios.get(API_URL + 'chart/kegiatan-disetujui/', {headers: authHeader()})
     }
     getChartDitolak() {
-        return axios.get(API_URL + 'chart/kegiatan-ditolak/')
+        return axios.get(API_URL + 'chart/kegiatan-ditolak/', {headers: authHeader()})
     }
     getChartMenunggu() {
-        return axios.get(API_URL + 'chart/kegiatan-menunggu/')
+        return axios.get(API_URL + 'chart/kegiatan-menunggu/', {headers: authHeader()})
     }
     getWaitingHumas() {
-        return axios.get(API_URL + 'perizinan-humas-disetujui/')
+        return axios.get(API_URL + 'perizinan-humas-disetujui/', {headers: authHeader()})
     }
     getStokSouvenir() {
-        return axios.get(API_URL + 'stok-souvenir/')
+        return axios.get(API_URL + 'stok-souvenir/', {headers: authHeader()})
     }
 }
 export default new UserService();
