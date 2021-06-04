@@ -15,9 +15,9 @@
                     </select>
                 </div>
             </div>
-            <hr class="line-header line-title">
+            <hr class="line-header line-title1">
         </div>
-        <div class="content-perizinan">
+        <div class="content-perizinan1">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -126,8 +126,8 @@ td{
     padding: 20px 20px 20px 20px ;
 }
 
-.line-title{
-    margin-right: -20px !important;
+.line-title1{
+    margin-right: 0px !important;
     margin-left: -20px !important;
 }
 
@@ -143,7 +143,7 @@ td{
     margin: 10px 0px 0px 0px;
 }
 
-.content-perizinan {
-    margin: 0px -20px 0px -20px;
+.content-perizinan1 {
+    margin: 0px 0px 0px -20px;
 }
 </style>
