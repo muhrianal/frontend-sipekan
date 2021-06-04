@@ -156,30 +156,34 @@ export default {
     mounted(){
         console.log(this.ruangan);
         console.log(this.error_message);
-                let option_waktu_made = [];
-                    let i;
-                    for (i = 0; i < 24; i++){
-                        if (i < 10 ){
-                            option_waktu_made.push({
-                                value: "2021-01-01T0" + i + ":00" +":00+07:00",
-                                text: "0" + i + ":00"
-                            });
-                            option_waktu_made.push({
-                                value: "2021-01-01T0" + i + ":30" +":00+07:00",
-                                text: "0" + i + ":30"
-                            });
-                        } else {
-                            option_waktu_made.push({
-                                value: "2021-01-01T" + i + ":00" +":00+07:00",
-                                text:  i + ":00"
-                            });
-                            option_waktu_made.push({
-                                value: "2021-01-01T" + i + ":30" +":00+07:00",
-                                text: i + ":30"
-                            });
-                        }
-                    }
-                    this.option_waktu = option_waktu_made;
+        let option_waktu_made = [];
+        let i;
+        for (i = 0; i < 24; i++){
+            if (i < 10 ){
+                option_waktu_made.push({
+                    value: "2021-01-01T0" + i + ":00" +":00+07:00",
+                    text: "0" + i + ":00"
+                });
+                option_waktu_made.push({
+                    value: "2021-01-01T0" + i + ":30" +":00+07:00",
+                    text: "0" + i + ":30"
+                });
+            } else {
+                option_waktu_made.push({
+                    value: "2021-01-01T" + i + ":00" +":00+07:00",
+                    text:  i + ":00"
+                });
+                option_waktu_made.push({
+                    value: "2021-01-01T" + i + ":30" +":00+07:00",
+                    text: i + ":30"
+                });
+            }
+        }
+        this.option_waktu = option_waktu_made;
+
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarRuanganPage', true);
+  
     },
     methods: {
         postCreateRuangan() {

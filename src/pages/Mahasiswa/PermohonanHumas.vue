@@ -246,7 +246,7 @@ export default {
                 this.jenis_publikasi_data = response.data;
             },
             error => {
-                this.error_call_api = (error.response && error.response.data) || error.message || error.toString();
+                this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
             }
         )
         UserService.getListSouvenir().then(
@@ -261,7 +261,7 @@ export default {
                 this.list_souvenir_data_filtered[0] = this.souvenir_data;
             },
             error => {
-                this.error_call_api = (error.response && error.response.data) || error.message || error.toString();
+                this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
             }
         )
     },
@@ -477,8 +477,7 @@ export default {
                             $('#notification-success').modal('show')
                         },
                         error => {
-                            console.log(error.message);
-                            this.error_message = error.message
+                            this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                             $('#notification-failed').modal('show')
                         }
                     )
@@ -514,8 +513,7 @@ export default {
                             $('#notification-success').modal('show')
                         },
                         error => {
-                            console.log(error.message);
-                            this.error_message = error.message
+                            this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                             $('#notification-failed').modal('show')
                         }                     
                     )
@@ -526,6 +524,10 @@ export default {
         }
     },
     mounted(){
+
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inBuatPerizinanPage', true);
+
         //create minimum date 
         var dtToday = new Date();
         var month = dtToday.getMonth() + 1;
