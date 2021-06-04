@@ -177,6 +177,10 @@ class UserService {
         return axios.get(API_URL + 'pengumuman/' + id)
     }
 
+    getPengumuman() {
+        return axios.get(API_URL + 'pengumuman/')
+    }
+
     putPengumumanById(id, data) {
         return axios.put(API_URL + 'pengumuman/edit/' + id, data)
     }

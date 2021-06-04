@@ -2,7 +2,7 @@
     <div>
         Home
     </div>
-    <button-batal><p>Kontol</p></button-batal>
+    <button-batal><p></p></button-batal>
     
 </template>
 
