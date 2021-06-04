@@ -189,6 +189,10 @@ export default {
 
         }
     },
+    mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarPerizinanPage', true);
+    },
     created(){
         this.id_izin_kegiatan = this.$route.params.id;
 
@@ -227,7 +231,7 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) ||  error.message ||  error.toString();
                     
 
                     $('#notification-failed').modal('show')
