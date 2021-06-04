@@ -45,7 +45,7 @@
             <th scope="row" class="text-left">
               <span class="ml-3">{{ izin_kegiatan.nama_kegiatan }}</span>
             </th>
-            <td>
+            <td v-if="izin_kegiatan.detail_kegiatan!=null">
               {{
                 getDateDef(izin_kegiatan.detail_kegiatan.waktu_tanggal_mulai)
               }}

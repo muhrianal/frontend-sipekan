@@ -1,11 +1,11 @@
 import axios from 'axios';
 import authHeader from './auth-header';
-
 const API_URL = 'https://backend-sipekan.herokuapp.com/';
 
 
 class UserService {
     getAllIzinKegiatan() {
+        console.log({headers: authHeader()})
         return axios.get(API_URL + 'izin-kegiatan/', {headers: authHeader()})
     }
 
@@ -26,7 +26,7 @@ class UserService {
     }
 
     getListPerizinanFastur() {
-        return axios.get(API_URL + 'peminjaman-ruangan/verifikasi-fastur/')
+        return axios.get(API_URL + 'peminjaman-ruangan/verifikasi-fastur/',{headers:authHeader()})
     }
 
     getPeminjamanRuanganByIdIzinKegiatan(id) {
@@ -99,7 +99,7 @@ class UserService {
     }
 
     putIzinKegiatanHeader(id, data) {
-        return axios.put(API_URL + 'detail-kegiatan/' + id + '/', data)
+        return axios.put(API_URL + 'detail-kegiatan/' + id + '/', data); 
     }
 
     putIzinKegiatanDetail(id, data) {
@@ -116,59 +116,59 @@ class UserService {
     }
 
     putDetailIzinKegiatan(id, data) {
-        return axios.put(API_URL + 'izin-kegiatan/' + id + '/', data)
+        return axios.put(API_URL + 'izin-kegiatan/' + id + '/', data);
     }
 
     getJenisPublikasi() {
-        return axios.get(API_URL + 'perizinan-humas/jenis-publikasi');
+        return axios.get(API_URL + 'perizinan-humas/jenis-publikasi',{headers: authHeader()});
     }
     getListSouvenir() {
-        return axios.get(API_URL + 'perizinan-humas/list-souvenir');
+        return axios.get(API_URL + 'perizinan-humas/list-souvenir',{headers: authHeader()});
     }
     postIzinKegiatanHeader(data) {
-        return axios.post(API_URL + 'perizinan-kegiatan-header/', data)
+        return axios.post(API_URL + 'perizinan-kegiatan-header/', data,{headers: authHeader()})
     }
     postIzinKegiatanDetail(data) {
         return axios.post(API_URL + 'perizinan-kegiatan-detail/', data, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+            headers: 
+                authHeader()
+            
         })
     }
     postPeminjamanRuanganMahasiswa(id, data) {
-        return axios.post(API_URL + 'peminjaman-ruangan/mahasiswa/' + id + '/', data)
+        return axios.post(API_URL + 'peminjaman-ruangan/mahasiswa/' + id + '/', data,{headers: authHeader()})
     }
     postPermohonanHumas(id, data) {
-        return axios.post(API_URL + 'perizinan-humas/' + id + '/', data)
+        return axios.post(API_URL + 'perizinan-humas/' + id + '/', data,{headers: authHeader()})
     }
     postPerizinanPublikasi(data) {
         return axios.post(API_URL + 'perizinan-humas-publikasi/', data, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+            headers: 
+                authHeader()
+            
         })
     }
     getListPerizinanHumas() {
-        return axios.get(API_URL + 'perizinan-humas/verifikasi-humas')
+        return axios.get(API_URL + 'perizinan-humas/verifikasi-humas/',{headers: authHeader()})
     }
     getPerizinanHumasByIdIzinKegiatan(id) {
-        return axios.get(API_URL + 'perizinan-humas/verifikasi-humas/' + id + '/')
+        return axios.get(API_URL + 'perizinan-humas/verifikasi-humas/' + id + '/',{headers: authHeader()})
     }
     putUpdateStatusDanAlasanPermintaanSouvenir(data, id) {
-        return axios.put(API_URL + 'perizinan-humas/update-status-souvenir/' + id + '/', data)
+        return axios.put(API_URL + 'perizinan-humas/update-status-souvenir/' + id + '/', data,{headers: authHeader()})
     }
     putUpdateStatusDanAlasanPermintaanProtokoler(data, id) {
-        return axios.put(API_URL + 'perizinan-humas/update-status-protokoler/' + id + '/', data)
+        return axios.put(API_URL + 'perizinan-humas/update-status-protokoler/' + id + '/', data,{headers: authHeader()})
     }
     putUpdateStatusDanAlasanJenisPerizinanPublikasi(data, id) {
-        return axios.put(API_URL + 'perizinan-humas/update-status-jenis-izin-publikasi/' + id + '/', data)
+        return axios.put(API_URL + 'perizinan-humas/update-status-jenis-izin-publikasi/' + id + '/', data,{headers: authHeader()})
     }
 
     putPerizinanPublikasi(id, data) {
         return axios.put(API_URL + 'perizinan-publikasi/' + id, data, {
             headers: {
-                'Content-Type': 'multipart/form-data'
-            }
+                'Content-Type': 'multipart/form-data',
+            },
         })
     }
 
@@ -188,8 +188,8 @@ class UserService {
         return axios.put(API_URL + 'pengumuman/edit/' + id, data, { headers: authHeader() })
     }
 
-    getWaitingPKM(id, data) {
-        return axios.get(API_URL + 'izin-kegiatan-waiting/', data, {headers: authHeader()})
+    getWaitingPKM() {
+        return axios.get(API_URL + 'izin-kegiatan-waiting/', {headers: authHeader()})
     }
 
     getVerifiedPKM(id, data) {
