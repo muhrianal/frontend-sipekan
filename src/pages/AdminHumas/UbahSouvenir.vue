@@ -103,7 +103,7 @@
                 <div class="text-center">
                     <img src="../../assets/images/icon_silang.png" alt="icon-error">
                 <h2 style="margin:20px 0px 15px 0px">Error</h2>
-                <p style="margin:0px 0px -15px 0px">Bagian berbintang harus diisi</p>
+                <p style="margin:0px 0px -15px 0px"></p>
                 </div>
             </div>
             <div class="modal-footer">
@@ -126,6 +126,7 @@
 <script>
 import UserService from '../../services/user.service';
 import $ from 'jquery';
+
 
 export default {
     name: 'EditSouvenir',
@@ -155,6 +156,9 @@ export default {
         )
     },
     mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarSouvenirPage', true);
+
         console.log(this.souvenir);
         console.log(this.error_message);
         UserService.getSouvenir(this.$route.params.id).then(
