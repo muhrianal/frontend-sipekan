@@ -43,11 +43,11 @@
             <div class="form-row">
                 <div v-if="this.perizinan_publikasi.file_materi_kegiatan != null" class="col-12 col-md-6  px-4 py-2">
                     <label  for="inputMateriKegiatan">Materi Kegiatan / Press Release: </label>
-                    <div ><a  :href="'https://backend-sipekan.herokuapp.com/'+this.perizinan_publikasi.file_materi_kegiatan" :download="this.perizinan_publikasi.file_materi_kegiatan">{{this.perizinan_publikasi.file_materi_kegiatan}}</a></div>
+                    <div ><a  :href="'https://backend-sipekan.herokuapp.com'+this.perizinan_publikasi.file_materi_kegiatan" :download="this.perizinan_publikasi.file_materi_kegiatan">{{this.perizinan_publikasi.file_materi_kegiatan}}</a></div>
                 </div>
                 <div v-if="this.perizinan_publikasi.file_flyer_pengumuman != null" class="col-12 col-md-6  px-4 py-2 ">
                     <label for="inputFlyerPengumuman">Flyer Pengumuman / Poster Kegiatan:</label>
-                    <div ><a  :href="'https://backend-sipekan.herokuapp.com/'+this.perizinan_publikasi.file_flyer_pengumuman" :download="this.perizinan_publikasi.file_flyer_pengumuman">{{this.perizinan_publikasi.file_flyer_pengumuman}}</a></div>
+                    <div ><a  :href="'https://backend-sipekan.herokuapp.com'+this.perizinan_publikasi.file_flyer_pengumuman" :download="this.perizinan_publikasi.file_flyer_pengumuman">{{this.perizinan_publikasi.file_flyer_pengumuman}}</a></div>
                 </div> 
             </div>
             <div v-if="this.perizinan_publikasi.keterangan != ''" class="form-row">
@@ -315,8 +315,8 @@ export default {
                 console.log(this.perizinan_publikasi)
             },
             error => {
-                console.log(error.message);
-                // do something when error
+                this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
+
             }
         )
     },
@@ -343,9 +343,8 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                     $('#notification-failed').modal('show')
-                    console.log(error.message);
                 }
             )
             }
@@ -358,9 +357,8 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                     $('#notification-failed').modal('show')
-                    console.log(error.message);
                 }
             )
             }
@@ -375,9 +373,8 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                     $('#notification-failed').modal('show')
-                    console.log(error.message);
                 }
                 )
             }
@@ -398,9 +395,8 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                     $('#notification-failed').modal('show')
-                    console.log(error.message);
                 }
             )
             }
@@ -413,9 +409,8 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                     $('#notification-failed').modal('show')
-                    console.log(error.message);
                 }
             )
             }
@@ -429,9 +424,8 @@ export default {
                     console.log(response.data);
                 },
                 error => {
-                    this.error_message = error.message
+                    this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
                     $('#notification-failed').modal('show')
-                    console.log(error.message);
                 }
                 )
             }            

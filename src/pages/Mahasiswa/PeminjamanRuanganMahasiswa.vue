@@ -68,6 +68,10 @@
                             </select>
                         </div>  
                     </div>
+                    <div class="form-row px-4">
+                            <label class="py-2" for="keterangan">Keterangan</label>
+                            <textarea class="form-control py-4" id="textarea-keterangan" rows="4" v-model="list_peminjaman_ruangan[peminjaman-1].catatan" placeholder="e.g. Fasilitas yang akan digunakan"></textarea>
+                    </div>
                     <div class="form-row">
                         <div class="col-12 col-md-6 px-4 py-2">
                             <div class="form-check">
@@ -78,10 +82,6 @@
                             </div>
                         </div>
 
-                        <div class="col-12 col-md-6 px-4 py-2">
-                            <label for="keterangan">Keterangan</label>
-                            <textarea class="form-control" id="textarea-keterangan" rows="4" v-model="list_peminjaman_ruangan[peminjaman-1].catatan" placeholder="e.g. Fasilitas yang akan digunakan"></textarea>
-                        </div>
                     </div>
                 </div>
                 <div class="text-center">
@@ -178,7 +178,7 @@ export default {
                 this.list_ruangan = list_ruangan_aktif
             },
             error => {
-                this.error_call_api = (error.response && error.response.data) || error.message || error.toString();
+                this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
             }
         )
     },
@@ -267,7 +267,7 @@ export default {
                     },
                     error => {
                         console.log(error.message);
-                        this.error_message = error.message
+                        this.error_message= (error.response && error.response.data && error.response.data.message) ||  error.message ||  error.toString();
                         $('#notification-failed').modal('show')
                     }
                 )
