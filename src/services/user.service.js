@@ -1,7 +1,7 @@
 import axios from 'axios';
 import authHeader from './auth-header';
 
-const API_URL = 'https://backend-sipekan.herokuapp.com/';
+const API_URL = 'http://localhost:8000/';
 
 class UserService {
     getAllIzinKegiatan() {
@@ -65,11 +65,11 @@ class UserService {
     }
 
     getAllSouvenir() {
-        return axios.get(API_URL + 'perizinan-humas/list-souvenir')
+        return axios.get(API_URL + 'perizinan-humas/list-souvenir',{ headers: authHeader()})
     }
 
     postSouvenir(data) {
-        return axios.post(API_URL + 'souvenir/', data)
+        return axios.post(API_URL + 'souvenir/', data,{ headers: authHeader()})
     }
 
     getSouvenir(id) {
@@ -77,27 +77,27 @@ class UserService {
     }
 
     deleteSouvenir(id) {
-        return axios.delete(API_URL + 'souvenir/' + id)
+        return axios.delete(API_URL + 'souvenir/' + id,{ headers: authHeader()});
     }
 
     putSouvenir(id, data) {
-        return axios.put(API_URL + 'souvenir/' + id + '/', data)
+        return axios.put(API_URL + 'souvenir/' + id + '/', data,{ headers: authHeader()});
     }
 
     putPermintaanProtokoler(id, data) {
-        return axios.put(API_URL + 'permintaan-protokoler/' + id + '/', data)
+        return axios.put(API_URL + 'permintaan-protokoler/' + id + '/', data,{ headers: authHeader()});
     }
 
     putPermintaanSouvenir(id, data) {
-        return axios.put(API_URL + 'permintaan-souvenir/' + id + '/', data)
+        return axios.put(API_URL + 'permintaan-souvenir/' + id + '/', data,{ headers: authHeader()});
     }
 
     putPeminjamanRuangan(id, data) {
-        return axios.put(API_URL + 'peminjaman-ruangan/' + id + '/', data)
+        return axios.put(API_URL + 'peminjaman-ruangan/' + id + '/', data,{ headers: authHeader()});
     }
 
     putIzinKegiatanHeader(id, data) {
-        return axios.put(API_URL + 'detail-kegiatan/' + id + '/', data)
+        return axios.put(API_URL + 'detail-kegiatan/' + id + '/', data,{ headers: authHeader()});
     }
 
     putIzinKegiatanDetail(id, data) {
@@ -110,11 +110,11 @@ class UserService {
 
 
     putPerulangan(id, data) {
-        return axios.put(API_URL + 'perulangan/' + id + '/', data)
+        return axios.put(API_URL + 'perulangan/' + id + '/', data,{ headers: authHeader()})
     }
 
     putDetailIzinKegiatan(id, data) {
-        return axios.put(API_URL + 'izin-kegiatan/' + id + '/', data)
+        return axios.put(API_URL + 'izin-kegiatan/' + id + '/', data,{ headers: authHeader()});
     }
 
     getJenisPublikasi() {
