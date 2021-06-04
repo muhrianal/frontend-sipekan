@@ -107,6 +107,8 @@
                         
 
                     </div>
+                </div>
+            </form>
                    
 
                     <div class="col-12 col-md-4 border" id="kegiatanacc">
@@ -115,15 +117,6 @@
                         
                         </div>
                         <br>
-                        <!-- Search -->
-                        <!-- <div class="input-group rounded">
-                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
-                                aria-describedby="search-addon" />
-                            <span class="input-group-text border-0" id="search-addon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </div>
-                        <br> -->
                         <div class="table table-responsive overflow-auto" id="listkegiatan">
                             <table class="table table-striped table-sm table-bordered">
                             <tbody id="app" class="fsmall mt-2">
