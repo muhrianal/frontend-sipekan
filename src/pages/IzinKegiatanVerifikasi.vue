@@ -211,7 +211,9 @@ export default {
         );
     },
     mounted(){
-        console.log(this.error_message);
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarPerizinanPage', true);
+
     },
      methods: {
         getDateDef : function (date) {

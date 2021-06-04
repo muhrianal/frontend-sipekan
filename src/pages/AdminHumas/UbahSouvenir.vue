@@ -155,6 +155,9 @@ export default {
         )
     },
     mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarSouvenirPage', true);
+
         console.log(this.souvenir);
         console.log(this.error_message);
         UserService.getSouvenir(this.$route.params.id).then(

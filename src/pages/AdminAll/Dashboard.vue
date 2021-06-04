@@ -246,6 +246,11 @@ export default {
     CasesLine,
     BarChart,
   },
+  mounted(){
+    // ngasih boolean flag buat nandain lagi active di halaman ini
+    this.$emit('inDashboardPage', true);
+  
+  },
   methods: {
     getDatas: function (a) {
       var array_elements = a;

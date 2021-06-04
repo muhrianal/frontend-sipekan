@@ -84,7 +84,10 @@ export default {
         
         } 
     },
-    computed: {
+    mounted() {
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inPengumumanPage', true);
+  
 
     },
     created(){

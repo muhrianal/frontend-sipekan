@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';
 import PeminjamanRuanganUnitKerja from '../pages/UnitKerja/PeminjamanRuanganUnitKerja';
-import Profile from '../pages/Profile.vue';
 import IzinKegiatan from '../pages/IzinKegiatan.vue';
 import IzinKegiatanVerifikasi from '../pages/IzinKegiatanVerifikasi.vue';
 import Ruangan from '../pages/AdminFastur/Ruangan';
@@ -48,11 +47,6 @@ const routes = [
     path:"/perizinan-fastur",
     name:"DaftarPerizinanRuangan",
     component: DaftarPerizinanRuangan,
-  },
-  {
-    path: "/profile",
-    name: "Profile",
-    component: Profile
   },
   {
     path: "/izin-kegiatan",

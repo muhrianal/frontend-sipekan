@@ -129,8 +129,9 @@ export default {
         )
     },
     mounted(){
-        console.log(this.perizinan);
-        console.log(this.error_message);
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inStatusPerizinanPage', true);
+
     },
     computed: {
         isLoggedIn() {
