@@ -526,6 +526,10 @@ export default {
         }
     },
     mounted(){
+
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inBuatPerizinanPage', true);
+
         //create minimum date 
         var dtToday = new Date();
         var month = dtToday.getMonth() + 1;

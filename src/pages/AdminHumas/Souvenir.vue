@@ -105,8 +105,8 @@ export default {
         )
     },
     mounted(){
-        console.log(this.souvenir);
-        console.log(this.error_message);
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarSouvenirPage', true);
     },
     computed: {
             isLoggedIn() {

@@ -111,6 +111,10 @@ export default {
             }
         );
 
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inPengumumanPage', true);
+  
+
     },
     methods: {
         submitPengumuman(){

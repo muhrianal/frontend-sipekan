@@ -136,6 +136,9 @@ export default {
     );
   },
   mounted() {
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+    this.$emit('inDaftarPerizinanPage', true);
+
     console.log(this.list_izin_kegiatan);
     // console.log(this.error_message);
   },
