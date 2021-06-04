@@ -5,7 +5,7 @@
             <hr class="line-header line-title">
         </div>
         <div class="formulir">
-            <form v-on:submit.prevent="submitPost">
+            <form @submit.prevent="submitPost">
                 <div class="form-row">
                     <div class="col-12 col-md-6">
                         <label for="inputNamaKegiatan">Nama Kegiatan<span class="asterisk">*</span></label>
@@ -99,8 +99,12 @@
                 </div>
                 
                 <div class="text-right">
-                    <button type="submit" class="btn btn-success btn-simpan">Submit</button>
+                    <button type="submit" class="btn btn-success btn-simpan" :disabled="loading">
+                        <span v-show="loading" class="spinner-border spinner-border-sm"></span>
+                        <span :hidden="loading">Simpan</span>
+                    </button>
                 </div>
+
             </form>
             
         </div>
@@ -134,7 +138,7 @@
                         <div class="text-center">
                             <img src="../../assets/images/icon_silang.png" alt="icon-error">
                         <h2 style="margin:20px 0px 15px 0px">Error</h2>
-                        <p style="margin:0px 0px -15px 0px">{{error_message}}</p>
+                        <p style="margin:0px 0px -15px 0px">{{error_call_api}}</p>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -156,8 +160,6 @@ import IzinKegiatan from '../../models/izin_kegiatan';
 import PeminjamanRuangan from '../../models/peminjaman_ruangan';
 import UserService from '../../services/user.service';
 import $ from 'jquery';
-import IzinMahasiswaService from '../../services/izinMahasiswa.service';
-
 
 export default {
     name: 'PeminjamanRuanganUnitKerja',
@@ -165,15 +167,16 @@ export default {
         return {
             terbuka_untuk_umum: false,
             option_waktu : [],
-            error_message: '',
 
             list_ruangan: [],
-            error_call_api : "",
+            error_call_api : '',
 
             number_of_peminjaman : 1,
             list_perulangan : [new Perulangan("", "", "")],
             list_peminjaman_ruangan : [new PeminjamanRuangan("", "", "", "", "", "", false),],
             izin_kegiatan: new IzinKegiatan("", "", ""),
+
+            loading: false,
         
         } 
     },
@@ -185,12 +188,12 @@ export default {
 
     },
     created(){
-        IzinMahasiswaService.getRuangan().then(
+        UserService.getAllRuangan().then(
             response =>{
                 this.list_ruangan = response.data
             },
             error => {
-                this.error_call_api = (error.response && error.response.data) || error.message || error.toString();
+                this.error_call_api = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
             }
         )
 
@@ -209,6 +212,8 @@ export default {
         },
 
         submitPost(){
+            this.loading = true;
+
             let i;
             for (i = 0; i < this.number_of_peminjaman; i++){
                 this.list_peminjaman_ruangan[i].setPerulangan(this.list_perulangan[i])
@@ -216,19 +221,18 @@ export default {
             this.izin_kegiatan.setPeminjamanRuangan(this.list_peminjaman_ruangan)
             this.izin_kegiatan.setUser(this.$store.state.auth.user.id_user)
 
-            console.log(this.izin_kegiatan)
-
             UserService.postPerizinanRuanganUnitKerja(this.izin_kegiatan).then(
-                response => {
+                () => {
                     $('#notification-success').modal('show')
-                    console.log(response.data);
+                    this.loading = false;
                 },
                 error => {
-                    this.error_message = error.message
+                    this.loading = false;
+                    this.error_call_api = (error.response && error.response.data && error.response.data.message) ||  error.message ||  error.toString();
                     
 
                     $('#notification-failed').modal('show')
-                    console.log(error.message);
+                    console.log(error.response.data);
                 }
             )
         },

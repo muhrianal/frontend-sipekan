@@ -1,6 +1,5 @@
 import {createRouter, createWebHistory} from 'vue-router';
 
-import Login from '../pages/Login.vue';
 import PeminjamanRuanganUnitKerja from '../pages/UnitKerja/PeminjamanRuanganUnitKerja';
 import Profile from '../pages/Profile.vue';
 import IzinKegiatan from '../pages/IzinKegiatan.vue';
@@ -18,6 +17,16 @@ import DetailPerizinanRuangan from '../pages/AdminFastur/DetailPerizinanRuangan'
 import PerizinanKegiatanMahasiswa from '../pages/Mahasiswa/PerizinanKegiatanMahasiswa.vue';
 import PermohonanHumas from '../pages/Mahasiswa/PermohonanHumas.vue';
 import PeminjamanRuanganMahasiswa from '../pages/Mahasiswa/PeminjamanRuanganMahasiswa.vue';
+import Dashboard from '../pages/AdminAll/Dashboard.vue';
+
+import Souvenir from '../pages/AdminHumas/Souvenir';
+import AddSouvenir from '../pages/AdminHumas/AddSouvenir';
+import UbahSouvenir from '../pages/AdminHumas/UbahSouvenir';
+import UbahPermintaanProtokoler from '../pages/Mahasiswa/UbahPermintaanProtokoler';
+import DaftarPerizinanHumas from '../pages/AdminHumas/DaftarPerizinanHumas';
+import DetailPerizinanHumas from '../pages/AdminHumas/DetailPerizinanHumas';
+import DetailKegiatan from '../pages/Mahasiswa/DetailKegiatan';
+
 import BuatPengumuman from '../pages/AdminAll/BuatPengumuman.vue';
 import EditPengumuman from '../pages/AdminAll/EditPengumuman.vue';
 import Pengumuman from '../pages/Mahasiswa/Pengumuman.vue';
@@ -42,11 +51,6 @@ const routes = [
     path:"/perizinan-fastur",
     name:"DaftarPerizinanRuangan",
     component: DaftarPerizinanRuangan,
-  },
-  {
-    path: "/login",
-    name: "Login",
-    component: Login,
   },
   {
     path: "/profile",
@@ -121,12 +125,52 @@ const routes = [
     component: JadwalTersedia,
   },
   {
-
     path: "/buat-perizinan/form-ruangan-mahasiswa/",
     name: "Form Peminjaman Ruangan Mahasiswa",
     component: PeminjamanRuanganMahasiswa,
     props: true
   },
+  {
+
+    path: "/dashboard/",
+    name: "Dashboard",
+    component: Dashboard,
+  },
+  {  
+    path: "/souvenir",
+    name: "Souvenir",
+    component: Souvenir
+  },
+  {
+    path: "/souvenir/add",
+    name: "AddSouvenir",
+    component: AddSouvenir
+  },
+  {
+    path: "/souvenir/ubah/:id",
+    name: "UbahSouvenir",
+    component: UbahSouvenir
+  },
+  {
+    path: "/perizinan/:id/permintaan-protokoler/ubah/:id2",
+    name: "UbahPermintaanProtokoler",
+    component: UbahPermintaanProtokoler,
+  },
+  {
+    path: "/perizinan-humas/:id",
+    name: "DetailPerizinanHumas",
+    component: DetailPerizinanHumas,
+  },
+  {
+    path:"/perizinan-humas",
+    name:"DaftarPerizinanHumas",
+    component: DaftarPerizinanHumas,
+  },
+  {
+    path:"/detail-kegiatan/:id",
+    name:"DetailKegiatan",
+    component: DetailKegiatan,
+   },
   {
     path: "/pengumuman",
     name: "Pengumuman",
@@ -155,15 +199,21 @@ router.beforeEach((to, from, next) =>{
     '/buat-perizinan/form-ruangan/',
     '/jadwal-tersedia',
     "/perizinan-fastur",
+    "/dashboard",
+    '/souvenir',
+    '/souvenir/add',
+    '/perizinan-humas',
     '/pengumuman',
-
   ];
 
   const authRequired = !publicPages.includes(to.path);
   const isLoggedIn = localStorage.getItem('user');
+  if(to.path == '/'){
+    next('/pengumuman')
+  }
 
   if (authRequired && !isLoggedIn){
-    next('/login');
+    next('/pengumuman');
   } else {
     next();
   }

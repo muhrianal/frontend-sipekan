@@ -13,7 +13,7 @@
 
                 <input id="file_pengumuman" class="form-control-file" type="file" ref="file" @change="onFileChange">
                 <div>
-                    <label id="file-saat-ini">File saat ini: <a :href="'http://localhost:8000' + this.file_pengumuman" id="printer" :download="this.file_pengumuman">{{this.file_pengumuman}}</a></label>
+                    <label id="file-saat-ini">File saat ini: <a :href="'https://backend-sipekan.herokuapp.com/' + this.file_pengumuman" id="printer" :download="this.file_pengumuman">{{this.file_pengumuman}}</a></label>
                 </div>
                 <p v-if="this.file_pengumuman!=null" class="text-left text-danger note-form" @Click="deleteFileInfo()">Hapus File</p>
 
