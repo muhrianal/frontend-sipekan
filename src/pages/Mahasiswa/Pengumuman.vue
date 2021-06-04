@@ -61,8 +61,88 @@
                 </ul>
               </div>
             </div>
-          </div>
+            <hr class="line-header">
+        </div>
+        
+        <div class="container-fluid">
 
+            <form>
+                <div class="form-row">
+                    <div class="col-12 col-md-8">
+                        <br>
+                        <div>       
+                               <!-- Search -->
+                                <!-- <div class="input-group rounded">
+                                    <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                        aria-describedby="search-addon" />
+                                    <span class="input-group-text border-0" id="search-addon">
+                                        <i class="fas fa-search"></i>
+                                    </span>
+                                </div>
+                            
+                            <br> -->
+                            
+                            <div class="pengumuman overflow-auto">
+                            <div v-for="pengumuman in daftar_pengumuman" v-bind:key="pengumuman">
+                                <div class="card w-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{pengumuman.nama}}</h5>
+                                        <p class="card-text">{{pengumuman.deskripsi}}</p>
+                                        <div><a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman">{{pengumuman.file_pengumuman}}</a></div>
+                                        <div class="d-flex flex-row-reverse" v-if="isAdmin">
+                                            <div class="p-2">
+                                                <!-- ini id nya belom dapet -->
+                                                <a :href="'pengumuman/edit/' + pengumuman.id" type="button" class="btn btn-warning" id="button-ubah">Ubah</a>                                       
+                                            </div>
+                                            <div class="p-2">                                               
+                                                <button type="button" class="btn btn-outline-danger" @click="deletePengumuman(pengumuman.id)" id="button-hapus">Hapus</button>                                                      
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                            </div>
+                            </div>                            
+                        </div>
+                        
+
+                    </div>
+                   
+
+                    <div class="col-12 col-md-4 border" id="kegiatanacc">
+                        <div>
+                            <h6 class="header-page2">Kegiatan Yang Akan Datang</h6>
+                        
+                        </div>
+                        <br>
+                        <!-- Search -->
+                        <!-- <div class="input-group rounded">
+                            <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
+                                aria-describedby="search-addon" />
+                            <span class="input-group-text border-0" id="search-addon">
+                                <i class="fas fa-search"></i>
+                            </span>
+                        </div>
+                        <br> -->
+                        <div class="table table-responsive overflow-auto" id="listkegiatan">
+                            <table class="table table-striped table-sm table-bordered">
+                            <tbody id="app" class="fsmall mt-2">
+                                <tr v-for="(kegiatan) in kegiatan_disetujui" v-bind:key="kegiatan.id">
+                                    <td>{{kegiatan.waktu}}</td>
+                                    <td>{{ kegiatan.nama_kegiatan }}
+                                        <p>{{ kegiatan.organisasi}} </p>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>    
+               
+
+                <br>
+                <br>
           <div class="col-12 col-md-4 border" id="kegiatanacc">
             <div>
               <h6 class="header-page2">Kegiatan Yang Akan Datang</h6>
