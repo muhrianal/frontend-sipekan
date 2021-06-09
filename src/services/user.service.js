@@ -9,7 +9,7 @@ class UserService {
     }
 
     getIzinKegiatan(id) {
-        return axios.get(API_URL + 'izin-kegiatan/' + id ,{ headers: authHeader()});
+        return axios.get(API_URL + 'izin-kegiatan/' + id +'/',{ headers: authHeader()});
     }
 
     putIzinKegiatan(id, data) {
@@ -53,7 +53,7 @@ class UserService {
     }
 
     deleteRuangan(id) {
-        return axios.delete(API_URL + 'api/ruangan/' + id)
+        return axios.delete(API_URL + 'api/ruangan/' + id + '/')
     }
 
     getAllPerizinan() {
@@ -73,11 +73,11 @@ class UserService {
     }
 
     getSouvenir(id) {
-        return axios.get(API_URL + 'souvenir/' + id +'/')
+        return axios.get(API_URL + 'souvenir/' + id +'/',{ headers: authHeader()})
     }
 
     deleteSouvenir(id) {
-        return axios.delete(API_URL + 'souvenir/' + id,{ headers: authHeader()});
+        return axios.delete(API_URL + 'souvenir/' + id + '/',{ headers: authHeader()});
     }
 
     putSouvenir(id, data) {

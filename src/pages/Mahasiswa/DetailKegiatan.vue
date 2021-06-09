@@ -14,13 +14,13 @@
                         <label v-if="izin_kegiatan.status_perizinan_kegiatan==2" class="status">Status Sekarang: <span class="status-span" style="color: #27AE60;">Disetujui</span></label>
                         <label v-if="izin_kegiatan.status_perizinan_kegiatan==3" class="status">Status Sekarang: <span class="status-span" style="color: #EB5757;">Ditolak</span></label>
                     </div>
-                    <div class="col-6 col-md-6 px-4 d-flex justify-content-end">
+                    <div v-if= "izin_kegiatan.detail_kegiatan != null" class="col-6 col-md-6 px-4 d-flex justify-content-end">
                         <label class="status">Dibuat: {{getDate(izin_kegiatan.detail_kegiatan.created_at)}}</label>
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="col-6 col-md-6"></div>
-                    <div class="col-6 col-md-6 px-4 d-flex justify-content-end">
+                    <div v-if= "izin_kegiatan.detail_kegiatan != null" class="col-6 col-md-6 px-4 d-flex justify-content-end">
                         <label class="status">Disunting: {{getDate(izin_kegiatan.detail_kegiatan.updated_at)}}</label>
                     </div>
                 </div>
