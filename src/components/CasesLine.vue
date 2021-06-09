@@ -1,5 +1,5 @@
 <template>
-  <canvas ref="myChart"></canvas>
+  <canvas ref="myChart" height="100"></canvas>
 </template>
 
 <script>

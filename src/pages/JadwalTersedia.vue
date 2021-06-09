@@ -100,6 +100,10 @@ export default {
       items: [],
     };
   },
+  mounted(){
+    // ngasih boolean flag buat nandain lagi active di halaman ini
+    this.$emit('inJadwalTersediaPage', true);
+  },
 
   components: {
     CalendarView,

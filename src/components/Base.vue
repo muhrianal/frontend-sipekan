@@ -10,61 +10,49 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li v-bind:class="{active : isInHomePage}" >
+                <li v-bind:class="{active : isInPengumumanPage}" >
                     <a class="sidebar-child" href="/pengumuman">Pengumuman</a>
                 </li>
                 
-                <li v-if="isLoggedIn && (currentUser.role == 'MAHASISWA' || currentUser.role == 'UNIT KERJA')" v-bind:class="{active : isInHomePage}" >
+                <li v-if="isLoggedIn && (currentUser.role == 'MAHASISWA' || currentUser.role == 'UNIT KERJA')" v-bind:class="{active : isInStatusPerizinanPage}" >
                     <a class="sidebar-child" href="/perizinan">Status Perizinan</a>
                 </li>
 
-                <li v-if="isLoggedIn && currentUser.role == 'UNIT KERJA'" v-bind:class="{active : isInPeminjamanRuanganUnitKerjaPage}" >
+                <li v-if="isLoggedIn && currentUser.role == 'UNIT KERJA'" v-bind:class="{active : isInBuatPerizinanPage}" >
                     <a class="sidebar-child" href="/buat-perizinan/form-ruangan/">Buat Perizinan</a>
                 </li>
 
-                <li v-if="isLoggedIn && currentUser.role == 'MAHASISWA'" v-bind:class="{active : isInPeminjamanRuanganUnitKerjaPage}" >
+                <li v-if="isLoggedIn && currentUser.role == 'MAHASISWA'" v-bind:class="{active : isInBuatPerizinanPage}" >
                     <a class="sidebar-child" href="/buat-perizinan/form-kegiatan/">Buat Perizinan</a>
                 </li>
 
 
-                <li v-if="isLoggedIn && (currentUser.role == 'ADMIN PKM' || currentUser.role == 'ADMIN FASTUR' || currentUser.role == 'ADMIN HUMAS')" v-bind:class="{active : isInHomePage}" >
+                <li v-if="isLoggedIn && (currentUser.role == 'ADMIN PKM' || currentUser.role == 'ADMIN FASTUR' || currentUser.role == 'ADMIN HUMAS')" v-bind:class="{active : isInDashboardPage}" >
                     <a class="sidebar-child" href="/dashboard">Dashboard</a>
                 </li>
 
-                <li v-if="isLoggedIn && currentUser.role == 'ADMIN FASTUR'" v-bind:class="{active : isInHomePage}" >
+                <li v-if="isLoggedIn && currentUser.role == 'ADMIN FASTUR'" v-bind:class="{active : isInDaftarPerizinanPage}" >
                     <a class="sidebar-child" href="/perizinan-fastur">Daftar Perizinan</a>
                 </li>
 
-                <li v-if="isLoggedIn && currentUser.role == 'ADMIN PKM'" v-bind:class="{active : isInHomePage}" >
+                <li v-if="isLoggedIn && currentUser.role == 'ADMIN PKM'" v-bind:class="{active : isInDaftarPerizinanPage}" >
                     <a class="sidebar-child" href="/izin-kegiatan">Daftar Perizinan</a>
                 </li>
-                <li v-if="isLoggedIn && currentUser.role == 'ADMIN HUMAS'" v-bind:class="{active : isInHomePage}" >
+                <li v-if="isLoggedIn && currentUser.role == 'ADMIN HUMAS'" v-bind:class="{active : isInDaftarPerizinanPage}" >
                     <a class="sidebar-child" href="/perizinan-humas">Daftar Perizinan</a>
                 </li>
 
-                <li v-if="isLoggedIn && currentUser.role == 'ADMIN HUMAS'" v-bind:class="{active : isInHomePage}" >
+                <li v-if="isLoggedIn && currentUser.role == 'ADMIN HUMAS'" v-bind:class="{active : isInDaftarSouvenirPage}" >
                     <a class="sidebar-child" href="/souvenir">Daftar Souvenir</a>
                 </li>
 
-                <li v-bind:class="{active : isInHomePage}" >
+                <li v-bind:class="{active : isInJadwalTersediaPage}" >
                     <a class="sidebar-child" href="/jadwal-tersedia">Jadwal Tersedia</a>
                 </li>
-                <li v-bind:class="{active : isInHomePage}" >
+                <li v-bind:class="{active : isInDaftarRuanganPage}" >
                     <a class="sidebar-child" href="/ruangan">Daftar Ruangan</a>
                 </li>
-
-                <li v-if="isLoggedIn != true" v-bind:class="{active : isInLoginPage}" >
-                    <a class="sidebar-child" href="/login">Login</a>
-                </li>
             </ul>
-                
-
-            <!-- <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="https://bootstrapious.com/tutorial/files/sidebar.zip" class="download">Download source</a>
-                </li>
-                
-            </ul> -->
         </nav>
 
         <!-- Page Content  -->
@@ -72,8 +60,16 @@
 
             <i class="far fa-sign-out-alt fa-2x"   v-on:click="toggleSidebar"></i>
             
-            <router-view @inLoginPage="isInLoginPageFunc" @inHomePage="isInHomePageFunc"  @inPeminjamanRuanganUnitKerjaPage="isInPeminjamanRuanganUnitKerjaPageFunc"/>
-            
+            <router-view 
+                @inPengumumanPage="isInPengumumanPageFunc"
+                @inStatusPerizinanPage="isInStatusPerizinanPageFunc"
+                @inBuatPerizinanPage="isInBuatPerizinanPageFunc"
+                @inDashboardPage="isInDashboardPageFunc"
+                @inDaftarPerizinanPage="isInDaftarPerizinanPageFunc"
+                @inDaftarSouvenirPage="isInDaftarSouvenirPageFunc"
+                @inJadwalTersediaPage="isInJadwalTersediaPageFunc"
+                @inDaftarRuanganPage="isInDaftarRuanganPageFunc"
+            />
         </div>
     </div>
 </div>
@@ -90,9 +86,14 @@ export default {
     data(){
         return {
             sidebarClosed : false,
-            isInHomePage : false,
-            isInLoginPage : false,
-            isInPeminjamanRuanganUnitKerjaPage : false,
+            isInPengumumanPage: false,
+            isInStatusPerizinanPage: false,
+            isInBuatPerizinanPage: false,
+            isInDashboardPage: false,
+            isInDaftarPerizinanPage: false,
+            isInDaftarSouvenirPage: false,
+            isInJadwalTersediaPage: false,
+            isInDaftarRuanganPage: false,
         }
     },
     computed: {
@@ -109,14 +110,29 @@ export default {
             console.log(this.$router.currentRoute._value.href)
         },
         // getting a var from child to get to know that it is the active one
-        isInLoginPageFunc(value){
-            this.isInLoginPage = value;
+        isInPengumumanPageFunc(value){
+            this.isInPengumumanPage = value;
         },
-        isInHomePageFunc(value){
-            this.isInHomePage = value;
+        isInStatusPerizinanPageFunc(value){
+            this.isInStatusPerizinanPage = value;
         },
-        isInPeminjamanRuanganUnitKerjaPageFunc(value){
-            this.isInPeminjamanRuanganUnitKerjaPage = value;
+        isInBuatPerizinanPageFunc(value){
+            this.isInBuatPerizinanPage = value;
+        },
+        isInDashboardPageFunc(value){
+            this.isInDashboardPage = value;
+        },
+        isInDaftarPerizinanPageFunc(value){
+            this.isInDaftarPerizinanPage = value;
+        },
+        isInDaftarSouvenirPageFunc(value){
+            this.isInDaftarSouvenirPage = value;
+        },
+        isInJadwalTersediaPageFunc(value){
+            this.isInJadwalTersediaPage = value;
+        },
+        isInDaftarRuanganPageFunc(value){
+            this.isInDaftarRuanganPage = value;
         }
     },
 }

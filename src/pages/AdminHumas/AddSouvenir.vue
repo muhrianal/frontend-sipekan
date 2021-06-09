@@ -135,12 +135,12 @@ export default {
         }
     },
     created(){
-        console.log("masuk created daftar")
-        
+
     },
     mounted(){
-        console.log(this.souvenir);
-        
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarSouvenirPage', true);
+
     },
     methods: {
         postCreateSouvenir() {

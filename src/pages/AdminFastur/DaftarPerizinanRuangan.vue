@@ -15,9 +15,9 @@
                     </select>
                 </div>
             </div>
-            <hr class="line-header line-title">
+            <hr class="line-header line-title1">
         </div>
-        <div class="content-perizinan">
+        <div class="content-perizinan1">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -32,7 +32,7 @@
                         <tr v-bind:key="perizinan.id" v-if="perizinan.peminjaman_ruangan.length != 0">
                             <td class="nama-kegiatan">{{perizinan.nama_kegiatan}}</td>
                             <td>{{perizinan.organisasi}}</td>
-                            <td>{{perizinan.user.profile.role}} a.n. {{perizinan.user.profile.nama}}</td>
+                            <td>{{perizinan.user.profile.role}}</td>
                             <td><a :href="'/perizinan-fastur/' + perizinan.id">Detail</a></td>
                         </tr>
                     </template>
@@ -56,6 +56,10 @@ export default{
             list_perizinan_filtered : [],
 
         }
+    },
+    mounted(){
+        // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inDaftarPerizinanPage', true);
     },
     created(){
         UserService.getListPerizinanFastur().then(
@@ -122,8 +126,8 @@ td{
     padding: 20px 20px 20px 20px ;
 }
 
-.line-title{
-    margin-right: -20px !important;
+.line-title1{
+    margin-right: 0px !important;
     margin-left: -20px !important;
 }
 
@@ -139,7 +143,7 @@ td{
     margin: 10px 0px 0px 0px;
 }
 
-.content-perizinan {
-    margin: 0px -20px 0px -20px;
+.content-perizinan1 {
+    margin: 0px 0px 0px -20px;
 }
 </style>
