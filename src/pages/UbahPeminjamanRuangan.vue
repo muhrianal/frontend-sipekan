@@ -107,8 +107,9 @@ export default {
         )
     },
     mounted(){
-        console.log(this.ruangan);
-        console.log(this.error_message);
+            // ngasih boolean flag buat nandain lagi active di halaman ini
+        this.$emit('inBuatPerizinanPage', true);
+
     },
     methods: {
         putEditRuangan() {

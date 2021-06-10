@@ -1,7 +1,15 @@
 <template>
     <div class="root-class">
         <div class="header">
-            <h3 class="header-page">Pengumuman</h3>
+            <div class="d-flex">
+                <h3 class="header-page mr-auto p2">Pengumuman</h3>
+                
+                <div class="ml-auto p2">
+                    <div v-if="(isLoggedIn && isAdmin)">
+                    <a href="pengumuman/create"  type="button" class="btn btn-outline-warning" @Click="cancelPeminjaman" id="button-tambah">Tambah Pengumuman</a>                                        
+                    </div>
+                </div>
+            </div>
             <hr class="line-header">
         </div>
         
@@ -11,8 +19,9 @@
                 <div class="form-row">
                     <div class="col-12 col-md-8">
                         <br>
-                        <div>          
-                                <div class="input-group rounded">
+                        <div>       
+                               <!-- Search -->
+                                <!-- <div class="input-group rounded">
                                     <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                                         aria-describedby="search-addon" />
                                     <span class="input-group-text border-0" id="search-addon">
@@ -20,43 +29,30 @@
                                     </span>
                                 </div>
                             
-                            <br>
-                            <!-- Nanti for loop disini sesui length pengumuman -->
-                            <div class="card w-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Judul</h5>
-                                    <p class="card-text">isinya Lorem Ipsum apa yak gitu dah</p>
-                                    <a href="#">link download file</a>
+                            <br> -->
+                            
+                            <div class="pengumuman overflow-auto">
+                            <div v-for="pengumuman in daftar_pengumuman" v-bind:key="pengumuman">
+                                <div class="card w-100">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{pengumuman.nama}}</h5>
+                                        <p class="card-text">{{pengumuman.deskripsi}}</p>
+                                        <div><a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman">{{pengumuman.file_pengumuman}}</a></div>
+                                        <div class="d-flex flex-row-reverse">
+                                            <div v-if="(isLoggedIn && isAdmin)">
+                                            <div class="p-2">                                                
+                                                <a :href="'pengumuman/edit/' + pengumuman.id" type="button" class="btn btn-warning" id="button-ubah">Ubah</a>                                       
+                                            </div>
+                                            </div>
+                                            <!-- <div class="p-2">                                               
+                                                <button type="button" class="btn btn-outline-danger" @click="deletePengumuman(pengumuman.id)" id="button-hapus">Hapus</button>                                                      
+                                            </div> -->
+                                        </div>
+                                    </div>
                                 </div>
+                                <br>
                             </div>
-                            <br>
-                            <div class="card w-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">Judul</h5>
-                                    <p class="card-text">isinya Lorem Ipsum apa yak gitu dah</p>
-                                    <a href="#">link download file</a>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="pagination">               
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                    </li>
-                                </ul>
-
-                            </div>
+                            </div>                            
                         </div>
                         
 
@@ -69,22 +65,22 @@
                         
                         </div>
                         <br>
-                        <div class="input-group rounded">
+                        <!-- Search -->
+                        <!-- <div class="input-group rounded">
                             <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search"
                                 aria-describedby="search-addon" />
                             <span class="input-group-text border-0" id="search-addon">
                                 <i class="fas fa-search"></i>
                             </span>
                         </div>
-                        <br>
-                        <div class="table-responsive overflow-auto" id="listkegiatan">
+                        <br> -->
+                        <div class="table table-responsive overflow-auto" id="listkegiatan">
                             <table class="table table-striped table-sm table-bordered">
                             <tbody id="app" class="fsmall mt-2">
                                 <tr v-for="(kegiatan) in kegiatan_disetujui" v-bind:key="kegiatan.id">
                                     <td>{{kegiatan.waktu}}</td>
                                     <td>{{ kegiatan.nama_kegiatan }}
                                         <p>{{ kegiatan.organisasi}} </p>
-
                                     </td>
 
                                 </tr>
@@ -116,15 +112,14 @@ export default {
 		data: function() {
 		
         return {
-            banyak_pengumuman: 1,
             kegiatan_disetujui: [[]],
+            daftar_pengumuman: [[]],
 
             }
         },
 
         created(){
                 UserService.getAllIzinKegiatan().then (
-
                 response => {
                     var tmp = response.data;
                     for (let i = 0; i < tmp.length; i++){
@@ -151,6 +146,24 @@ export default {
                     this.error_message = (error.response && error.response.data) || error.message || error.toString();
                 }
             );
+            UserService.getPengumuman().then(
+                response => {
+                    var tmp2 = response.data;
+                    var id = 0;
+                    for (let i = 0; i < tmp2.length; i++){
+                        id = id+1;
+                        var nama = tmp2[i].nama;
+                        var deskripsi = tmp2[i].deskripsi;
+                        var file_pengumuman = tmp2[i].file_pengumuman;
+                        this.daftar_pengumuman.push({id, nama, deskripsi, file_pengumuman});
+                    }
+                    this.daftar_pengumuman.shift();
+
+                },
+                error => {
+                    this.error_message = (error.response && error.response.data) || error.message || error.toString();
+                }
+            );
         },
 
         method:{
@@ -158,6 +171,28 @@ export default {
                 return moment(date, 'YYYY-MM-DDTHH:mm').format('D MMMM YYYY');
             },
 
+            deletePengumuman(id){
+                var sementara = [[]];
+                for(let i=0; i< this.daftar_pengumuman.length; i++){
+                    if(this.daftar_pengumuman[i+1].id != id){
+                        sementara.push(this.daftar_pengumuman[i+1]);
+                    }
+                }
+                this.daftar_pengumuman = sementara;
+
+                
+            }
+
+        },
+
+        computed: {
+            isLoggedIn() {
+                return this.$store.state.auth.status.loggedIn;
+            },
+
+            isAdmin() {
+                return (this.$store.state.auth.user.role == "ADMIN PKM" || this.$store.state.auth.user.role == "ADMIN FASTUR" || this.$store.state.auth.user.role == "ADMIN HUMAS");
+            },
         },
         
 
@@ -189,8 +224,12 @@ export default {
 }
 
 #listkegiatan{
-    height:350px;
+    height:370px;
 
+}
+
+.pengumuman{
+    height:500px;
 }
 
 .header-page {
@@ -240,8 +279,15 @@ input[type=text] {
     cursor: pointer;
 }
 
-textarea{
-    width:100%;
+#button-hapus{
+    width: 80px;
+    height: 35px;
+    font-size: 15px;
 }
 
+#button-ubah{
+    width: 80px;
+    height: 35px;
+    font-size: 15px;
+}
 </style>

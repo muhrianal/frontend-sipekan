@@ -17,7 +17,6 @@ export default {
     methods: {
         logOut() {
             this.$store.dispatch('auth/logout');
-            // this.$router.push('/pengumuman');
             location.replace('/pengumuman');
         }
     },
@@ -30,6 +29,7 @@ export default {
         },
         getName(){
             var name = this.$store.state.auth.user.name;
+            console.log(this.$store.state.auth.user);
             if (name.length > 15){
                 name = name.substring(0, 15) + '..';
             }

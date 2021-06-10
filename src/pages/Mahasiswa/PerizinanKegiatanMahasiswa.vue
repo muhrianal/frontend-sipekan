@@ -17,7 +17,42 @@
                     </div>                    
                 </div>
 
+
                 <div class="form-row">
+                    <div class="col-6 col-md-3 py-2 tanggal-class">
+                        <label for="inputTanggalMulai">Tanggal dan Waktu Mulai<span class="text-danger">*</span></label>
+                        <input type=date class=form-control v-model="tanggal_mulai" :min="maxDate" required>
+                    </div>
+                    <div class="col-6 col-md-3  py-3 waktu-class ">
+                        <label></label>
+                        <select class="form-control"  v-model="waktu_mulai" required>
+                            <option selected disabled value="">Pilih...</option>
+                            <option v-for="option in option_waktu" v-bind:key="option" v-bind:value="option.value">{{option.text}}</option>
+                        </select>
+                    </div>
+                    <div class="col-6 col-md-3 py-2 tanggal-class">
+                        <label for="inputTanggalAkhir">Tanggal dan Waktu Akhir<span class="text-danger">*</span></label>
+                        <input type=date class=form-control v-model="tanggal_akhir" :min="maxDate" required>
+                    </div>  
+                    <div class="col-6 col-md-3 py-3 waktu-class">
+                        <label></label>
+                        <select class="form-control"  v-model="waktu_akhir" required>
+                            <option selected disabled value="">Pilih...</option>
+                            <option v-for="option in option_waktu" v-bind:key="option" v-bind:value="option.value">{{option.text}}</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="form-row">
+                    <div class="col-12 col-md-6  px-4 py-2">
+                        <label for="inputOrganisasi">Organisasi Penanggungjawab<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" placeholder="e.g. BEM FEB UI" required v-model="organisasi">
+                    </div>                         
+                </div>
+
+                 <div class="form-row">
+                    <div class="col-12 col-md-6  px-4 py-2">
                         <label for="inputKetuaOrganisasi">Nama Ketua Organisasi<span class="text-danger">*</span></label>
                         <input type="text" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" class="form-control" placeholder="e.g. Yobelio" required v-model="nama_ketua_organisasi">
                     </div>
@@ -25,18 +60,21 @@
                         <label for="inputNpmKetuaOrganisasi">NPM Ketua Organisasi<span class="text-danger">*</span>:</label>
                         <input type="text" pattern="^[0-9]+$" minlength="10" maxlength="10" class="form-control" placeholder="e.g. 1806123456" required v-model="npm_ketua_organisasi">
                     </div>                    
+                </div>
 
                 <div class="form-row">
                     <div class="col-12 col-md-6  px-4 py-2">
+                        <label for="inputPicKegiatan">Nama PIC Kegiatan<span class="text-danger">*</span></label>
                         <input type="text" pattern="^(?![\s.]+$)[a-zA-Z\s.]*$" class="form-control" placeholder="e.g. Akhmad" required v-model="nama_pic"> 
                     </div>
                     <div class="col-12 col-md-6  px-4 py-2">
                         <label for="inputNpmPic">NPM PIC<span class="text-danger">*</span>:</label>
-                        <label for="inputEmailPic">Email PIC<span class="text-danger">*</span>:</label>
-                        <input type="email" class="form-control" placeholder="e.g. akhmad@ui.ac.id" required v-model="email_pic">
-                    </div>
+                        <input type="text" pattern="^[0-9]+$" minlength="10" maxlength="10" class="form-control" placeholder="e.g. 1806123456" required v-model="npm_pic">
+                    </div>                    
+                </div>
+
+                <div class="form-row">
                     <div class="col-12 col-md-6  px-4 py-2">
-                        <label for="inputHpPic">HP PIC<span class="text-danger">*</span>:</label>
                         <label for="inputEmailPic">Email PIC<span class="text-danger">*</span></label>
                         <input type="email" class="form-control" placeholder="e.g. akhmad@ui.ac.id" required v-model="email_pic">
                     </div>
