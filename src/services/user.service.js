@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'https://backend-sipekan.herokuapp.com/';
+const API_URL = 'http://localhost:8000/';
+
 
 class UserService {
     getAllIzinKegiatan() {
