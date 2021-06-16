@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://backend-sipekan.herokuapp.com';
+const API_URL = 'https://backend-sipekan.herokuapp.com/';
 
 class IzinMahasiswaService {
     getJenisPublikasi() {
