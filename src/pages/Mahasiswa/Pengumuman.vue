@@ -4,8 +4,10 @@
             <div class="d-flex">
                 <h3 class="header-page mr-auto p2">Pengumuman</h3>
                 
-                <div class="ml-auto p2" v-if="isAdmin">
+                <div class="ml-auto p2">
+                    <div v-if="(isLoggedIn && isAdmin)">
                     <a href="pengumuman/create"  type="button" class="btn btn-outline-warning" @Click="cancelPeminjaman" id="button-tambah">Tambah Pengumuman</a>                                        
+                    </div>
                 </div>
             </div>
             <hr class="line-header">
@@ -30,20 +32,24 @@
                             <br> -->
                             
                             <div class="pengumuman overflow-auto">
-                            <div v-for="pengumuman in daftar_pengumuman" v-bind:key="pengumuman">
+                            <div v-for="pengumuman in pengumuman_reverse" v-bind:key="pengumuman">
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <h5 class="card-title">{{pengumuman.nama}}</h5>
                                         <p class="card-text">{{pengumuman.deskripsi}}</p>
-                                        <div><a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman">{{pengumuman.file_pengumuman}}</a></div>
-                                        <div class="d-flex flex-row-reverse" v-if="isAdmin">
-                                            <div class="p-2">
-                                                <!-- ini id nya belom dapet -->
+                                        
+                                        <div v-if="pengumuman.file_pengumuman !=null"> 
+                                            <a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman">Download file</a>
+                                        </div>
+                                        <div class="d-flex flex-row-reverse">
+                                            <div v-if="(isLoggedIn && isAdmin)">
+                                            <div class="p-2">                                                
                                                 <a :href="'pengumuman/edit/' + pengumuman.id" type="button" class="btn btn-warning" id="button-ubah">Ubah</a>                                       
                                             </div>
-                                            <div class="p-2">                                               
-                                                <button type="button" class="btn btn-outline-danger" @click="deletePengumuman(pengumuman.id)" id="button-hapus">Hapus</button>                                                      
                                             </div>
+                                            <!-- <div class="p-2">                                               
+                                                <button type="button" class="btn btn-outline-danger" @click="deletePengumuman(pengumuman.id)" id="button-hapus">Hapus</button>                                                      
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -109,7 +115,7 @@ export default {
 		data: function() {
 		
         return {
-            banyak_pengumuman: 0,
+            pengumuman_reverse:[[]],
             kegiatan_disetujui: [[]],
             daftar_pengumuman: [[]],
 
@@ -118,9 +124,9 @@ export default {
 
         created(){
                 UserService.getAllIzinKegiatan().then (
-
                 response => {
                     var tmp = response.data;
+                    console.log(tmp);
                     for (let i = 0; i < tmp.length; i++){
                         if (tmp[i].status_perizinan_kegiatan == 2){
                             var tahun = tmp[i].detail_kegiatan.waktu_tanggal_mulai.slice(0,4);
@@ -138,6 +144,7 @@ export default {
                         }
                     }
                     this.kegiatan_disetujui.shift();
+                    console.log(this.kegiatan_disetujui);
 
 
                 },
@@ -157,6 +164,11 @@ export default {
                         this.daftar_pengumuman.push({id, nama, deskripsi, file_pengumuman});
                     }
                     this.daftar_pengumuman.shift();
+                    var panjang = this.daftar_pengumuman.length;
+                    for (let j =0 ; j<this.daftar_pengumuman.length; j++){
+                        this.pengumuman_reverse.push(this.daftar_pengumuman[panjang-j-1]);
+                    }
+                    this.pengumuman_reverse.shift();
 
                 },
                 error => {
@@ -185,6 +197,10 @@ export default {
         },
 
         computed: {
+            isLoggedIn() {
+                return this.$store.state.auth.status.loggedIn;
+            },
+
             isAdmin() {
                 return (this.$store.state.auth.user.role == "ADMIN PKM" || this.$store.state.auth.user.role == "ADMIN FASTUR" || this.$store.state.auth.user.role == "ADMIN HUMAS");
             },
