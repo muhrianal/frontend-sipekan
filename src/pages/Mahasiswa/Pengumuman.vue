@@ -38,8 +38,8 @@
                                         <h5 class="card-title">{{pengumuman.nama}}</h5>
                                         <p class="card-text">{{pengumuman.deskripsi}}</p>
                                         
-                                        <div v-if="pengumuman.file_pengumuman !=null"> 
-                                            <a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman">Download file</a>
+                                        <div id="download" v-if="pengumuman.file_pengumuman !=null"> 
+                                            <a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman"><u>Download file</u></a>
                                         </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div v-if="(isLoggedIn && isAdmin)">
@@ -237,6 +237,10 @@ export default {
 #listkegiatan{
     height:370px;
 
+}
+
+#download{
+    color:blue;
 }
 
 .pengumuman{
