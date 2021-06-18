@@ -32,12 +32,15 @@
                             <br> -->
                             
                             <div class="pengumuman overflow-auto">
-                            <div v-for="pengumuman in daftar_pengumuman" v-bind:key="pengumuman">
+                            <div v-for="pengumuman in pengumuman_reverse" v-bind:key="pengumuman">
                                 <div class="card w-100">
                                     <div class="card-body">
                                         <h5 class="card-title">{{pengumuman.nama}}</h5>
                                         <p class="card-text">{{pengumuman.deskripsi}}</p>
-                                        <div><a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman">{{pengumuman.file_pengumuman}}</a></div>
+                                        
+                                        <div id="download" v-if="pengumuman.file_pengumuman !=null"> 
+                                            <a :href="'https://backend-sipekan.herokuapp.com/'+pengumuman.file_pengumuman" :download="pengumuman.file_pengumuman"><u>Download file</u></a>
+                                        </div>
                                         <div class="d-flex flex-row-reverse">
                                             <div v-if="(isLoggedIn && isAdmin)">
                                             <div class="p-2">                                                
@@ -112,6 +115,7 @@ export default {
 		data: function() {
 		
         return {
+            pengumuman_reverse:[[]],
             kegiatan_disetujui: [[]],
             daftar_pengumuman: [[]],
 
@@ -122,6 +126,7 @@ export default {
                 UserService.getAllIzinKegiatan().then (
                 response => {
                     var tmp = response.data;
+                    console.log(tmp);
                     for (let i = 0; i < tmp.length; i++){
                         if (tmp[i].status_perizinan_kegiatan == 2){
                             var tahun = tmp[i].detail_kegiatan.waktu_tanggal_mulai.slice(0,4);
@@ -139,6 +144,7 @@ export default {
                         }
                     }
                     this.kegiatan_disetujui.shift();
+                    console.log(this.kegiatan_disetujui);
 
 
                 },
@@ -158,6 +164,11 @@ export default {
                         this.daftar_pengumuman.push({id, nama, deskripsi, file_pengumuman});
                     }
                     this.daftar_pengumuman.shift();
+                    var panjang = this.daftar_pengumuman.length;
+                    for (let j =0 ; j<this.daftar_pengumuman.length; j++){
+                        this.pengumuman_reverse.push(this.daftar_pengumuman[panjang-j-1]);
+                    }
+                    this.pengumuman_reverse.shift();
 
                 },
                 error => {
@@ -226,6 +237,10 @@ export default {
 #listkegiatan{
     height:370px;
 
+}
+
+#download{
+    color:blue;
 }
 
 .pengumuman{
