@@ -2,6 +2,32 @@
     <div class="root-class">
         <div class="header">
             <div class="row">
+                <div class="col-6 col-md-6">
+                    <h3 class="header-page" style="font-weight: bold">
+                     Daftar Perizinan
+                    </h3>
+                </div>
+                <div class="col-3 col-md-3">       
+                    <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                </div>
+                <div class="col-3 col-md-3" style="margin-left: -20px">
+                    <select
+                        class="form-control"
+                        v-model="choice"
+                        @change="filterPerizinan"
+                    >
+                        <option selected disabled value="-1">Pilih status</option>
+                        <option value="-5">Semua</option>
+                        <option value="1">Menunggu Persetujuan</option>
+                        <option value="2">Disetujui</option>
+                        <option value="3">Ditolak</option>
+                    </select>
+                </div>    
+            </div>
+            <hr class="line-header line-title1" />
+        </div>
+        <!-- <div class="header">
+            <div class="row">
                 <div class="col-12 col-md-4 ">
                     <h3 class="header-page" style="font-weight: bold;">Daftar Perizinan</h3>
                 </div>
@@ -19,7 +45,7 @@
                 </div>
             </div>
             <hr class="line-header line-title">
-        </div>
+        </div> -->
         <div class="content-perizinan1">
             <table class="table table-striped table-responsive-sm">
                 <thead>

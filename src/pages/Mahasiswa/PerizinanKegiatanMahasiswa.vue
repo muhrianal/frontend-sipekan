@@ -2,7 +2,7 @@
     <div class="root-class">
         <div class="header">
             <h3 class="header-page">Buat Perizinan<span style="color:grey"> >> Kegiatan</span></h3>
-            <hr class="line-header line-title">
+            <hr class="line-header line-title1">
         </div>
         <div class="formulir">
             <form v-on:submit.prevent="postIzinKegiatan" id="formKegiatan">

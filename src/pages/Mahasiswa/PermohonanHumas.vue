@@ -2,7 +2,7 @@
     <div class="root-class">
         <div class="header">
             <h3 class="header-page">Buat Perizinan<span style="color:grey"> >> Humas</span></h3>
-            <hr class="line-header line-title">
+            <hr class="line-header line-title1">
         </div>
         
         <div class="formulir">
@@ -329,6 +329,7 @@ export default {
                     }
                 })
                 this.list_souvenir_data_filtered[index] = souvenir_data_filtered
+                console.log(this.list_souvenir_data_filtered)
         },
         onRegionChange(index){
             if(this.list_permintaan_souvenir[index].kelas_penerima_souvenir != ''){
@@ -380,19 +381,19 @@ export default {
         resetSouvenir(){
             if(this.souvenir_checked){
                 for(var index=0;index<this.number_of_permintaan_souvenir;index++){
-                document.getElementById("input_nama_penerima").value = '';
-                document.getElementById("input_jabatan_penerima").value = '';
-                document.getElementById("input_kelas").selectedIndex = '';
-                document.getElementById("input_region").selectedIndex = '';
-                document.getElementById("input_souvenir").value = null;
-                document.getElementById("input_jumlah").value = '';
-                this.list_permintaan_souvenir[index].nama_penerima_souvenir = '';
-                this.list_permintaan_souvenir[index].jabatan_penerima_souvenir = '';
-                this.list_permintaan_souvenir[index].kelas_penerima_souvenir = '';
-                this.list_permintaan_souvenir[index].region_penerima_souvenir = '';
-                this.list_permintaan_souvenir[index].souvenir = null;
-                this.list_permintaan_souvenir[index].jumlah = '';
-                this.souvenir_data_filtered = this.souvenir_data;
+                    document.getElementById("input_nama_penerima").value = '';
+                    document.getElementById("input_jabatan_penerima").value = '';
+                    document.getElementById("input_kelas").selectedIndex = '';
+                    document.getElementById("input_region").selectedIndex = '';
+                    document.getElementById("input_souvenir").value = null;
+                    document.getElementById("input_jumlah").value = '';
+                    this.list_permintaan_souvenir[index].nama_penerima_souvenir = '';
+                    this.list_permintaan_souvenir[index].jabatan_penerima_souvenir = '';
+                    this.list_permintaan_souvenir[index].kelas_penerima_souvenir = '';
+                    this.list_permintaan_souvenir[index].region_penerima_souvenir = '';
+                    this.list_permintaan_souvenir[index].souvenir = null;
+                    this.list_permintaan_souvenir[index].jumlah = '';
+                    this.list_souvenir_data_filtered[index] = this.souvenir_data;
                 }
             }  
         },

@@ -50,7 +50,7 @@
                     <div ><a  :href="'https://backend-sipekan.herokuapp.com'+this.perizinan_publikasi.file_flyer_pengumuman" :download="this.perizinan_publikasi.file_flyer_pengumuman">{{this.perizinan_publikasi.file_flyer_pengumuman}}</a></div>
                 </div> 
             </div>
-            <div v-if="this.perizinan_publikasi.keterangan != ''" class="form-row">
+            <div v-if="this.perizinan_publikasi.keterangan != null " class="form-row">
                 <div  class="col-12 col-md-6  px-4 py-2">
                     <label  for="inputMateriKegiatan">Keterangan: </label>
                     <textarea class="form-control readonly-form" :placeholder="this.perizinan_publikasi.keterangan" readonly></textarea>
@@ -317,7 +317,6 @@ export default {
                 if(this.perizinan_publikasi != null){
                     this.list_jenis_izin_publikasi = this.perizinan_publikasi.jenis_izin_publikasi;
                 }
-                console.log(this.perizinan_publikasi)
             },
             error => {
                 this.error_message = (error.response && error.response.data && error.response.data.message) || error.message ||   error.toString();
@@ -343,7 +342,7 @@ export default {
                 data["status_permintaan_souvenir"] = 2
                 UserService.putUpdateStatusDanAlasanPermintaanSouvenir(data, id_permintaan).then(
                 response => {
-                    this.success_message = 'Permintaan humas berhasil disetujui'
+                    this.success_message = 'Permintaan souvenir berhasil disetujui'
                     $('#notification-success').modal('show')
                     console.log(response.data);
                 },
@@ -357,7 +356,7 @@ export default {
                 data["status_permintaan_protokoler"] = 2
                 UserService.putUpdateStatusDanAlasanPermintaanProtokoler(data, id_permintaan).then(
                 response => {
-                    this.success_message = 'Permintaan humas berhasil disetujui'
+                    this.success_message = 'Permintaan protokoler berhasil disetujui'
                     $('#notification-success').modal('show')
                     console.log(response.data);
                 },
@@ -368,12 +367,11 @@ export default {
             )
             }
             else if(jenis_permintaan == 'publikasi'){
-                console.log("masuk publikasi")
                 data["status_perizinan_publikasi"] = 2
                 data["id_perizinan_publikasi"] = this.perizinan_publikasi.id
                 UserService.putUpdateStatusDanAlasanJenisPerizinanPublikasi(data,id_permintaan).then(
                     response => {
-                    this.success_message = 'Permintaan humas berhasil disetujui'
+                    this.success_message = 'Permintaan publikasi berhasil disetujui'
                     $('#notification-success').modal('show')
                     console.log(response.data);
                 },
@@ -395,7 +393,7 @@ export default {
                 data["status_permintaan_souvenir"] = 3
                 UserService.putUpdateStatusDanAlasanPermintaanSouvenir(data, this.current_id_untuk_ditolak).then(
                 response => {
-                    this.success_message = 'Permintaan humas berhasil ditolak'
+                    this.success_message = 'Permintaan souvenir berhasil ditolak'
                     $('#notification-success').modal('show')
                     console.log(response.data);
                 },
@@ -409,7 +407,7 @@ export default {
                 data["status_permintaan_protokoler"] = 3
                 UserService.putUpdateStatusDanAlasanPermintaanProtokoler(data, this.current_id_untuk_ditolak).then(
                 response => {
-                    this.success_message = 'Permintaan humas berhasil ditolak'
+                    this.success_message = 'Permintaan protokoler berhasil ditolak'
                     $('#notification-success').modal('show')
                     console.log(response.data);
                 },
@@ -424,7 +422,7 @@ export default {
                 data["id_perizinan_publikasi"] = this.perizinan_publikasi.id
                 UserService.putUpdateStatusDanAlasanJenisPerizinanPublikasi(data,this.current_id_untuk_ditolak).then(
                     response => {
-                    this.success_message = 'Permintaan humas berhasil ditolak'
+                    this.success_message = 'Permintaan publikasi berhasil ditolak'
                     $('#notification-success').modal('show')
                     console.log(response.data);
                 },
