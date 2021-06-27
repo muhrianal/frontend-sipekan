@@ -34,9 +34,9 @@
         </template>
         <tr v-if="currentUser.role=='MAHASISWA'">
           <td>Status</td>
-          <td v-if="perizinan.status_perizinan_kegiatan==1">Menunggu Persetujuan</td>
-          <td v-if="perizinan.status_perizinan_kegiatan==2">Disetujui</td>
-          <td v-if="perizinan.status_perizinan_kegiatan==3">Ditolak <a data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;"  data-target="#popup-izin-kegiatan">edit</a>
+          <td class="text-warning" v-if="perizinan.status_perizinan_kegiatan==1">Menunggu Persetujuan</td>
+          <td class="text-success" v-if="perizinan.status_perizinan_kegiatan==2">Disetujui</td>
+          <td class="text-danger" v-if="perizinan.status_perizinan_kegiatan==3">Ditolak <a data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;"  data-target="#popup-izin-kegiatan">edit</a>
           </td>
           <!-- Modal: Popup Edit izin_kegiatan -->
                   <template v-if="perizinan.detail_kegiatan!=null">
@@ -193,7 +193,7 @@
                         <template v-if="list_peminjaman_ruangan[peminjaman-1].perulangan.jenjang==4">
                         <td class="text-center"> Bulanan </td>  
                         </template>     
-                    <td class="text-center" v-if="list_peminjaman_ruangan[peminjaman-1].status_peminjaman_ruangan==1">Menunggu Persetujuan</td>
+                    <td class="text-center text-warning" v-if="list_peminjaman_ruangan[peminjaman-1].status_peminjaman_ruangan==1">Menunggu Persetujuan</td>
                     <td class="text-center text-success" v-if="list_peminjaman_ruangan[peminjaman-1].status_peminjaman_ruangan==2">Disetujui</td>
                     <td class="text-center text-danger" v-if="list_peminjaman_ruangan[peminjaman-1].status_peminjaman_ruangan==3">Ditolak <button  class="btn tambah" style="padding:1px 3px;font-size:12px;" @click="openModal(peminjaman-1)" >edit</button></td>
                     
@@ -294,7 +294,6 @@
         </div>
 
         <div style="margin:1% 7%;">
-	    <!-- DI SINI DAPAT DITAMBAHKAN "TAMBAH PENGAJUAN HUMAS" YANG MENGARAH KE HALAMAN PENGAJUAN PERIZINAN HUMAS-->
             <div class="table-responsive" v-if="currentUser.role=='MAHASISWA'">
                 <table class="table table-sm table-bordered" style="border-radius: 10px 10px 0px 0px;">
                     <thead class="thead kuning rounded-top" style="border-radius: 10px 10px 0px 0px;">
@@ -357,9 +356,9 @@
             <td v-if="pub.jenis_publikasi.luar_ruangan==false"> - </td>
             <td v-if="pub.jenis_publikasi.luar_ruangan==false"> {{pub.jenis_publikasi.deskripsi_publikasi}}</td>
             
-            <td class="text-center" v-if="pub.status_perizinan_publikasi==1">Menunggu Persetujuan</td>
-            <td class="text-center" v-if="pub.status_perizinan_publikasi==2">Disetujui</td>
-            <td class="text-center" v-if="pub.status_perizinan_publikasi==3">Ditolak 
+            <td class="text-center text-warning" v-if="pub.status_perizinan_publikasi==1">Menunggu Persetujuan</td>
+            <td class="text-center text-success" v-if="pub.status_perizinan_publikasi==2">Disetujui</td>
+            <td class="text-center text-danger" v-if="pub.status_perizinan_publikasi==3">Ditolak 
             <!-- Modal: Popup Edit Permintaan Protokoler -->
                 <div class="modal fade bd-example-modal-lg" id="popup-perizinan-publikasi" tabindex="-1" role="dialog" aria-labelledby="popup-protokoler" aria-hidden="true">
                     <div class="modal-dialog modal-lg" role="document">
@@ -462,9 +461,9 @@
                     <td>{{list_permintaan_souvenir[souv-1].kelas_penerima_souvenir}}</td>
                     <td>{{list_permintaan_souvenir[souv-1].souvenir}}</td>
                     <td>{{list_permintaan_souvenir[souv-1].jumlah}}</td>
-                    <td class="text-center" v-if="list_permintaan_souvenir[souv-1].status_permintaan_souvenir==1">Menunggu Persetujuan</td>
-                    <td class="text-center" v-if="list_permintaan_souvenir[souv-1].status_permintaan_souvenir==2">Disetujui</td>
-                    <td class="text-center" v-if="list_permintaan_souvenir[souv-1].status_permintaan_souvenir==3">Ditolak <button data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;"  data-target="#popup-permintaan-souvenir" @Click="openModalSouvenir(souv-1)">edit</button>
+                    <td class="text-center text-warning" v-if="list_permintaan_souvenir[souv-1].status_permintaan_souvenir==1">Menunggu Persetujuan</td>
+                    <td class="text-center text-success" v-if="list_permintaan_souvenir[souv-1].status_permintaan_souvenir==2">Disetujui</td>
+                    <td class="text-center text-danger" v-if="list_permintaan_souvenir[souv-1].status_permintaan_souvenir==3">Ditolak <button data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;"  data-target="#popup-permintaan-souvenir" @Click="openModalSouvenir(souv-1)">edit</button>
                     
                 </td>       
                 </tr>
@@ -565,9 +564,9 @@
             </tr>
             <tr>
                 <td>{{perizinan.permintaan_protokoler.deskripsi_kebutuhan}}</td>
-                <td class="text-center" v-if="perizinan.permintaan_protokoler.status_permintaan_protokoler==1">Menunggu Persetujuan</td>
-                <td class="text-center" v-if="perizinan.permintaan_protokoler.status_permintaan_protokoler==2">Disetujui</td>
-                <td class="text-center" v-if="perizinan.permintaan_protokoler.status_permintaan_protokoler==3">Ditolak <a data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;" data-target="#popup-permintaan-protokoler" >edit</a></td>
+                <td class="text-center text-warning" v-if="perizinan.permintaan_protokoler.status_permintaan_protokoler==1">Menunggu Persetujuan</td>
+                <td class="text-center text-success" v-if="perizinan.permintaan_protokoler.status_permintaan_protokoler==2">Disetujui</td>
+                <td class="text-center text-danger" v-if="perizinan.permintaan_protokoler.status_permintaan_protokoler==3">Ditolak <a data-toggle="modal" class="btn tambah" style="padding:1px 3px;font-size:12px;" data-target="#popup-permintaan-protokoler" >edit</a></td>
                 <!-- Modal: Popup Edit Permintaan Protokoler -->
                 <div class="modal fade" id="popup-permintaan-protokoler" tabindex="-1" role="dialog" aria-labelledby="popup-protokoler" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -720,7 +719,7 @@ export default {
             status_perizinan_publikasi: 1,
             alasan_penolakan_publikasi: '',
             keterangan: '',            
-            jenis_publikasi: "",
+            //jenis_publikasi: "",
             file_materi_kegiatan: null,
             file_flyer_pengumuman: null,
             jenis_izin_publikasi: [],
