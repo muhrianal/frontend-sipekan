@@ -250,6 +250,15 @@ export default {
     UserService.getRuangan(this.$route.params.id).then(
       (response) => {
         this.ruangan = response.data;
+		this.jenis_ruang = response.data.jenis_ruang;
+		this.nama = response.data.nama;
+		this.kapasitas = response.data.kapasitas;
+		this.fasilitas = response.data.fasilitan;
+		this.lokasi = response.data.lokasi;
+		this.informasi_tambahan = response.data.informasi_tambahan;
+		this.waktu_available_mulai = response.data.waktu_available_mulai;
+		this.waktu_available_akhir = response.data.waktu_available_akhir;
+		this.status = response.data.status;
       },
       (error) => {
         this.error_message =
@@ -260,6 +269,26 @@ export default {
     );
   },
   mounted() {
+  UserService.getRuangan(this.$route.params.id).then(
+    (response) => {
+      this.ruangan = response.data;
+	this.jenis_ruang = response.data.jenis_ruang;
+	this.nama = response.data.nama;
+	this.kapasitas = response.data.kapasitas;
+	this.fasilitas = response.data.fasilitas;
+	this.lokasi = response.data.lokasi;
+	this.informasi_tambahan = response.data.informasi_tambahan;
+	this.waktu_available_mulai = response.data.waktu_available_mulai;
+	this.waktu_available_akhir = response.data.waktu_available_akhir;
+	this.status = response.data.status;
+    },
+    (error) => {
+      this.error_message =
+        (error.response && error.response.data) ||
+        error.message ||
+        error.toString();
+    }
+  );
     let option_waktu_made = [];
     let i;
     for (i = 0; i < 24; i++) {

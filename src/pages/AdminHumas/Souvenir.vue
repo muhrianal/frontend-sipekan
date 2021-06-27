@@ -33,7 +33,7 @@
             <th scope="col" class="text-center">Aksi</th>
           </tr>
         </thead>
-        <tbody id="app" style="font-weight=300;">
+        <tbody style="font-weight=300;">
           <tr v-for="(souv,index) in souvenir" v-bind:key="souv.id">
             <th scope="row" class="text-center">{{ index + 1 + "." }}</th>
             <td>{{ souv.nama_souvenir }}</td>
@@ -53,7 +53,7 @@
                 data-target="#deleteModal"
                 style="padding: 3px 6px; font-size: 14px"
                 @click="openModal(souv.id)"
-                >Hapus {{souv.nama_souvenir}}</button
+                >Hapus</button
               >
             
             </td>
@@ -77,7 +77,7 @@
                         class="my-4"
                         style="width: 7%; height: 7%; margin-right: 2%"
                       />
-                      <p class="my-4">Ingin menghapus Souvenir {{id_souvenir}}?</p>
+                      <p class="my-4">Ingin menghapus Souvenir?</p>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -142,6 +142,8 @@
         </tbody>
       </table>
     </div>
+    <!-- DI SINI DAPAT DITAMBAHKAN BUTTON PAGINATION-->
+	
   </div>
 </template>
 

@@ -130,7 +130,7 @@
                                     <button class="btn btn-outline-secondary" data-dismiss="modal" style="width:80px; height:36px;">Batal</button>
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn btn-success" type="submit" style="width:80px; height:36px;" v-on:click="editIzinKegiatan(perizinan.id);editDetailIzinKegiatan(perizinan.detail_kegiatan.id, perizinan.id)">Simpan {{perizinan.id}}</button>
+                                    <button class="btn btn-success" type="submit" style="width:80px; height:36px;" v-on:click="editIzinKegiatan(perizinan.id);editDetailIzinKegiatan(perizinan.detail_kegiatan.id, perizinan.id)">Simpan</button>
                                 </div>
                             </div>
                         </div>
@@ -151,6 +151,7 @@
     </div>
 
     <div style="margin:1% 7%;">
+    <!-- DI SINI DAPAT DITAMBAHKAN "TAMBAH PENGAJUAN RUANGAN" YANG MENGARAH KE HALAMAN PENGAJUAN M=PEMINJAMAN RUANGAN -->
         <div class="table-responsive">
         <table class="table table-sm table-bordered" style="border-radius: 10px 10px 0px 0px;">
           <thead class="thead kuning rounded-top" style="border-radius: 10px 10px 0px 0px;">
@@ -293,6 +294,7 @@
         </div>
 
         <div style="margin:1% 7%;">
+	    <!-- DI SINI DAPAT DITAMBAHKAN "TAMBAH PENGAJUAN HUMAS" YANG MENGARAH KE HALAMAN PENGAJUAN PERIZINAN HUMAS-->
             <div class="table-responsive" v-if="currentUser.role=='MAHASISWA'">
                 <table class="table table-sm table-bordered" style="border-radius: 10px 10px 0px 0px;">
                     <thead class="thead kuning rounded-top" style="border-radius: 10px 10px 0px 0px;">
@@ -532,7 +534,7 @@
                                     <button class="btn btn-outline-secondary" data-dismiss="modal" style="width:80px; height:36px;">Batal</button>
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn btn-success" type="submit" style="width:80px; height:36px;" v-on:click="editPermintaanSouvenir(list_permintaan_souvenir[indexPermintaanSouvenir].id,indexPermintaanSouvenir)">Simpan {{list_permintaan_souvenir[indexPermintaanSouvenir].id}}</button>
+                                    <button class="btn btn-success" type="submit" style="width:80px; height:36px;" v-on:click="editPermintaanSouvenir(list_permintaan_souvenir[indexPermintaanSouvenir].id,indexPermintaanSouvenir)">Simpan</button>
                                 </div>
                             </div>
                         </div>
