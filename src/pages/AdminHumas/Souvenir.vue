@@ -33,8 +33,8 @@
             <th scope="col" class="text-center">Aksi</th>
           </tr>
         </thead>
-        <tbody id="app" style="font-weight=300;">
-          <tr v-for="(souv, index) in souvenir" v-bind:key="souv.id">
+        <tbody style="font-weight=300;">
+          <tr v-for="(souv,index) in souvenir" v-bind:key="souv.id">
             <th scope="row" class="text-center">{{ index + 1 + "." }}</th>
             <td>{{ souv.nama_souvenir }}</td>
             <td class="text-center">{{ souv.stok }}</td>
@@ -47,16 +47,18 @@
                 style="padding: 3px 6px; font-size: 14px"
                 >Ubah</a
               >
-              <a
-                href="/"
+              <button
                 class="btn batal"
                 data-toggle="modal"
                 data-target="#deleteModal"
                 style="padding: 3px 6px; font-size: 14px"
-                >Hapus</a
+                @click="openModal(souv.id)"
+                >Hapus</button
               >
+            
             </td>
-            <!-- Modal: Konfirmasi Hapus -->
+             <!-- Modal: Konfirmasi Hapus -->
+             <div v-if="id_souvenir!=null">
             <div
               class="modal fade"
               id="deleteModal"
@@ -89,13 +91,14 @@
                     <button
                       type="button"
                       class="btn simpan"
-                      v-on:click="hapusSouvenir(souv.id)"
+                      v-on:click="hapusSouvenir(id_souvenir)"
                     >
                       Hapus
                     </button>
                   </div>
                 </div>
               </div>
+            </div>
             </div>
             <!-- Modal: Notif Berhasil Dihapus -->
             <div
@@ -115,7 +118,7 @@
                         alt="icon-error"
                       />
                       <p class="my-2">
-                        Souvenir {{ souv.nama_souvenir }} berhasil dihapus
+                        Souvenir berhasil dihapus
                       </p>
                     </div>
                   </div>
@@ -139,6 +142,8 @@
         </tbody>
       </table>
     </div>
+    <!-- DI SINI DAPAT DITAMBAHKAN BUTTON PAGINATION-->
+	
   </div>
 </template>
 
@@ -153,6 +158,7 @@ export default {
   data() {
     return {
       souvenir: [],
+      id_souvenir:"",
     };
   },
   created() {
@@ -197,6 +203,10 @@ export default {
     },
     deleteDone() {
       window.location.href = "/souvenir";
+    },
+    openModal(index){ 
+      this.id_souvenir = index
+      $('#deleteModal').modal('show')
     },
   },
 };

@@ -1,5 +1,5 @@
 <template>
-    <div class="card" id="app" style="min-height:600%;">
+    <div class="card" style="min-height:600%;">
         <div class="d-flex">
             <div class="mr-auto p-3">
                 <h4 class="judul p-1 align-middle" style="font-weight: 500;">Daftar Perizinan</h4>
