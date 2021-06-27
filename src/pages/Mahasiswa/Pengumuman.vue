@@ -79,7 +79,7 @@
                         <br> -->
                         <div class="table table-responsive overflow-auto" id="listkegiatan">
                             <table class="table table-striped table-sm table-bordered">
-                            <tbody id="app" class="fsmall mt-2">
+                            <tbody class="fsmall mt-2">
                                 <tr v-for="(kegiatan) in kegiatan_disetujui" v-bind:key="kegiatan.id">
                                     <td>{{kegiatan.waktu}}</td>
                                     <td>{{ kegiatan.nama_kegiatan }}
