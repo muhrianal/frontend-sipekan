@@ -5,7 +5,7 @@
                 <h4 class="judul p-1 align-middle" style="font-weight: 500;">Daftar Perizinan</h4>
             </div>
             <div class="p-3">
-                <a href="/ruangan/add" class="btn tambah" style="padding:3px 6px;font-size:14px;"> Tambah Perizinan</a>
+                <a href="/buat-perizinan/form-kegiatan/" class="btn tambah" style="padding:3px 6px;font-size:14px;"> Tambah Perizinan</a>
             </div>
         </div>
         <hr class="line-header" style="margin:0px;">

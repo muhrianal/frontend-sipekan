@@ -22,7 +22,7 @@
 
         </tr>
       </thead>
-      <tbody style="font-weight=300;">
+      <tbody id="app" style="font-weight=300;">
         <tr v-for="(ruang, index) in ruangan" v-bind:key="ruang.id">
             <th scope="row" class="text-center" >{{ index+1+"." }} </th>
             <td class="text-center">{{ ruang.nama }}</td>
@@ -38,8 +38,6 @@
       </tbody>
     </table>
     </div>
-	    <!-- DI SINI DAPAT DITAMBAHKAN BUTTON PAGINATION-->
-
     </div>
 </template>
 
