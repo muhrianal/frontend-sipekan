@@ -22,7 +22,7 @@ export default {
           {
             label: "A",
             borderColor: "white",
-            backgroundColor: ["#F2994A", "#56CCF2", "#6FCF97", "#EB5757", "#9B51E0"],
+            backgroundColor: ["#F2994A", "#56CCF2", "#6FCF97", "#EB5757", "#9B51E0", "#56CCF2", "#6FCF97", "#BDBDBD", "#F2C94C", "#BB6BD9"],
             data: this.chartData,
           },
         ],
