@@ -459,7 +459,7 @@ export default {
         });
         this.count = this.getDatas(this.ruangans);
         this.count.forEach((h) => {
-          if (this.count.length < 4) {
+          if (this.ruangans_unique.length < 9) {
             this.ruangans_unique.push(h.label);
             this.total.push(h.total);
           }
@@ -497,7 +497,7 @@ export default {
         if (this.harian1.length > 0){
         this.harian1_count = this.getDatas(this.harian1);
         this.harian1_count.forEach((h) => {
-          if (this.count.length < 4) {
+          if (this.harian1_unique.length < 9) {
             this.harian1_unique.push(h.label);
             this.harian1_total.push(h.total);
           }
@@ -529,7 +529,7 @@ export default {
         if (this.harian7.length > 0){
         this.harian7_count = this.getDatas(this.harian7);
         this.harian7_count.forEach((h) => {
-          if (this.count.length < 4) {
+          if (this.harian7_unique.length < 9) {
             this.harian7_unique.push(h.label);
             this.harian7_total.push(h.total);
           }
@@ -561,7 +561,7 @@ export default {
         if (this.harian30.length > 0){
         this.harian30_count = this.getDatas(this.harian30);
         this.harian30_count.forEach((h) => {
-          if (this.count.length < 4) {
+          if (this.harian30_unique.length < 9) {
             this.harian30_unique.push(h.label);
             this.harian30_total.push(h.total);
           }
